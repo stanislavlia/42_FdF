@@ -18,8 +18,11 @@
 
 # endif
 
+# include "fdf_parser.h"
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h> //FOR DEV
+
 
 typedef struct s_list
 {
