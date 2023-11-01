@@ -27,7 +27,21 @@ int	count_els_row(char *row)
 	return (n_els);
 }
 
+void	free_2d_array(char **array)
+{
+	int	i;
 
+	i = 0;
+	while (array[i] != NULL)
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
+}
+
+
+//NOTE: create func to free the row
 t_vector	*extract_row(char *row, int y, int row_size)
 {
 	char	**array_row;
@@ -49,12 +63,18 @@ t_vector	*extract_row(char *row, int y, int row_size)
 		x_coord++;
 	}
 	//DONT FORGET TO FREE array_row
+	free_2d_array(array_row);
 	return (row_extracted);
 }
 
 
 int	main()
 {
-	t_vector *row1 = extract_row("1 1 -1 0 -1 -2 ", 2, 6);
+	t_vector *row1 = extract_row("132 1 -13232 435 -1 -2 ", 2, 6);
+
+	printf("\n-----el----- \nx = %d\ny = %d\nz = %d\n", row1[0].x, row1[0].y, row1[0].z);
+	printf("\n-----el----- \nx = %d\ny = %d\nz = %d\n", row1[1].x, row1[1].y, row1[1].z);
+	printf("\n-----el----- \nx = %d\ny = %d\nz = %d\n", row1[2].x, row1[2].y, row1[2].z);
+
 
 }
