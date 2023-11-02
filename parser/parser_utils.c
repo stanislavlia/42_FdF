@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
 //Counts number of numbers in row 
 int	count_els_row(char *row)
@@ -42,39 +42,64 @@ void	free_2d_array(char **array)
 
 
 //NOTE: create func to free the row
-t_vector	*extract_row(char *row, int y, int row_size)
+t_row	extract_row(char *row, int y, int row_size)
 {
 	char	**array_row;
 	int		x_coord;
 	t_vector *row_extracted;
+	t_row	row_ret;
 	
 	row_extracted = (t_vector *) malloc(sizeof(t_vector) * row_size);
 	array_row = ft_split(row, ' ');
-	if (array_row == NULL || row == NULL)
-		return (NULL);
+	// if (array_row == NULL || row == NULL)
+	// 	return (NULL);
 	x_coord = 0;
 	while (array_row[x_coord] != NULL)
 	{
 		row_extracted[x_coord].x = x_coord;
 		row_extracted[x_coord].y = y;
-		row_extracted[x_coord].z = ft_atoi(array_row[x_coord]);
+		row_extracted[x_coord].z = ft_atoi(array_row[x_coord]); //TODO: adress case of (num,color) BONUS part
 		printf("X = %d; Y = %d; Z = %d \n", x_coord, y, ft_atoi(array_row[x_coord]));
 
 		x_coord++;
 	}
 	//DONT FORGET TO FREE array_row
+	row_ret.values = row_extracted;
+	row_ret.y = y;
 	free_2d_array(array_row);
-	return (row_extracted);
+	return (row_ret);
 }
+
+
+
+
+// t_matrix	read_matrix(int fd, int m, int n)
+// {
+// 	char	*curr_line;
+// 	int		y_coord;
+// 	t_matrix	matrix;
+
+// 	y_coord = 0;
+// 	matrix.rows = (t_row *) malloc(sizeof(t_row) * m);
+// 	while (y_coord < m)
+// 	{
+// 		curr_line = get_next_line(fd);
+
+// 	}
+	
+// }
+
 
 
 int	main()
 {
-	t_vector *row1 = extract_row("132 1 -13232 435 -1 -2 ", 2, 6);
+	t_row row = extract_row("132   1   -132   435   -1  -2          ", 2, 6);
+	
 
-	printf("\n-----el----- \nx = %d\ny = %d\nz = %d\n", row1[0].x, row1[0].y, row1[0].z);
-	printf("\n-----el----- \nx = %d\ny = %d\nz = %d\n", row1[1].x, row1[1].y, row1[1].z);
-	printf("\n-----el----- \nx = %d\ny = %d\nz = %d\n", row1[2].x, row1[2].y, row1[2].z);
+	printf("\n-----el----- \nx = %d\ny = %d\nz = %d\n", row.values[0].x, row.values[0].y, row.values[0].z);
+	printf("\n-----el----- \nx = %d\ny = %d\nz = %d\n", row.values[1].x, row.values[1].y, row.values[1].z);
+	printf("\n-----el----- \nx = %d\ny = %d\nz = %d\n", row.values[2].x, row.values[2].y, row.values[2].z);
+	free(row.values);
 
 
 }

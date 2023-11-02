@@ -21,6 +21,24 @@ typedef struct s_vector
 
 }	t_vector;
 
+typedef struct s_row
+{
+	int			y;
+	t_vector	*values;
+
+
+}	t_row;
+
+
+typedef struct s_matrix
+{
+	t_row	*rows;
+	int		m;
+	int		n; //shape of the matrix
+
+}	t_matrix;
+
+
 int		ft_atoi(const char *str);
 char	**ft_split(char const *s, char c);
 
