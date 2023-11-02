@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
+#include <fcntl.h>
+#include <unistd.h>
 
 //Counts number of numbers in row 
 int	count_els_row(char *row)
@@ -52,14 +54,14 @@ t_row	extract_row(char *row, int y, int row_size)
 	row_extracted = (t_vector *) malloc(sizeof(t_vector) * row_size);
 	array_row = ft_split(row, ' ');
 	// if (array_row == NULL || row == NULL)
-	// 	return (NULL);
+	// 	Make up some way to report about mistake
 	x_coord = 0;
-	while (array_row[x_coord] != NULL)
+	while (x_coord < row_size)
 	{
 		row_extracted[x_coord].x = x_coord;
 		row_extracted[x_coord].y = y;
 		row_extracted[x_coord].z = ft_atoi(array_row[x_coord]); //TODO: adress case of (num,color) BONUS part
-		printf("X = %d; Y = %d; Z = %d \n", x_coord, y, ft_atoi(array_row[x_coord]));
+		//printf("X = %d; Y = %d; Z = %d \n", x_coord, y, ft_atoi(array_row[x_coord]));
 
 		x_coord++;
 	}
@@ -71,35 +73,35 @@ t_row	extract_row(char *row, int y, int row_size)
 }
 
 
+t_matrix	read_matrix(int fd, int m, int n)
+{
+	char	*curr_line;
+	int		y_coord;
+	t_matrix	matrix;
 
-
-// t_matrix	read_matrix(int fd, int m, int n)
-// {
-// 	char	*curr_line;
-// 	int		y_coord;
-// 	t_matrix	matrix;
-
-// 	y_coord = 0;
-// 	matrix.rows = (t_row *) malloc(sizeof(t_row) * m);
-// 	while (y_coord < m)
-// 	{
-// 		curr_line = get_next_line(fd);
-
-// 	}
-	
-// }
+	y_coord = 0;
+	matrix.rows = (t_row *) malloc(sizeof(t_row) * m);
+	while (y_coord < m)
+	{	
+		curr_line = get_next_line(fd);
+		printf("Line: %s", curr_line);
+		matrix.rows[y_coord] = extract_row(curr_line, y_coord, n);
+		y_coord++;
+	}
+	return matrix;
+}
 
 
 
 int	main()
 {
-	t_row row = extract_row("132   1   -132   435   -1  -2          ", 2, 6);
+	//t_row row = extract_row("132   1   -132   435   -1  -2          ", 2, 6);
 	
+	int	fd = open("/Users/sliashko/Desktop/FdF/test_maps/10-2.fdf", O_RDONLY);
+	printf("FD = %d\n", fd);
 
-	printf("\n-----el----- \nx = %d\ny = %d\nz = %d\n", row.values[0].x, row.values[0].y, row.values[0].z);
-	printf("\n-----el----- \nx = %d\ny = %d\nz = %d\n", row.values[1].x, row.values[1].y, row.values[1].z);
-	printf("\n-----el----- \nx = %d\ny = %d\nz = %d\n", row.values[2].x, row.values[2].y, row.values[2].z);
-	free(row.values);
+	t_matrix matrix = read_matrix(fd, 10, 10);
+	printf("some el there %d\n", matrix.rows[0].values[3].z);
 
 
 }
