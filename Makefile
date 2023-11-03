@@ -11,17 +11,19 @@
 # **************************************************************************** #
 
 TARGET = fdf
-INCS = include
+INCS = -Iinclude -Iminilibx
 
 # Compiler and flags
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -I$(INCS)
+CFLAGS =  $(INCS)
 
 #Directories
-SRCDIRS = parser gnl utils
+SRCDIRS = parser gnl utils draw minilibx
 INCDIR = include
 OBJDIR = obj
 BINDIR = bin
+MINLIBXDIR = minilibx
+MINLIBX = $(MINLIBXDIR)/minilibx.a
 
 # Source and object files
 SOURCES = $(foreach dir,$(SRCDIRS),$(wildcard $(dir)/*.c))
@@ -34,7 +36,9 @@ all: $(TARGET)
 
 # Rule to create the target
 $(TARGET): $(OBJECTS)
-	
+# -C - shows the directory
+#this line below builds a minlibx.a library
+	@make -C minilibx_macos
 	$(CC) $(CFLAGS) $^ -o $@
 
 # Rule to compile source files
@@ -42,8 +46,10 @@ $(OBJDIR)/%.o: %.c
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+
 # Clean rule
 clean:
+	@make clean -C minilibx_macos
 	rm -rf $(OBJDIR)
 
 fclean:

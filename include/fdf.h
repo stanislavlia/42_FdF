@@ -18,11 +18,12 @@
 
 # endif
 
+# include "../minilibx_macos/mlx.h"
 # include "fdf_parser.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include <stdio.h> //FOR DEV
+# include <stdio.h>
 
 
 typedef struct s_list
