@@ -3,58 +3,69 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sliashko <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: dlariono <dlariono@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/10/05 15:52:58 by sliashko          #+#    #+#              #
-#    Updated: 2023/10/05 15:53:00 by sliashko         ###   ########.fr        #
+#    Created: 2023/03/09 18:31:20 by seozkan           #+#    #+#              #
+#    Updated: 2023/06/24 18:15:52 by dlariono         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-TARGET = fdf
-INCS = -Iinclude -Iminilibx
+NAME = fdf
+NAME_B = fdfb
+CC = @gcc
+RM = @rm -f
+FLAGS = -Wall -Wextra -Werror
 
-# Compiler and flags
-CC = gcc
-CFLAGS =  $(INCS)
+YELLOW = \033[33;49;1m
+CYAN = \033[33;36;1m
+END = \033[0;0m
 
-#Directories
-SRCDIRS = parser gnl utils draw minilibx
-INCDIR = include
-OBJDIR = obj
-BINDIR = bin
-MINLIBXDIR = minilibx
-MINLIBX = $(MINLIBXDIR)/minilibx.a
+MLX_DIR = ./mlx
+MLX = $(MLX_DIR)/libmlx.a
+MLX_ARG = -framework OpenGl -framework AppKit
 
-# Source and object files
-SOURCES = $(foreach dir,$(SRCDIRS),$(wildcard $(dir)/*.c))
-OBJECTS = $(patsubst %.c,$(OBJDIR)/%.o,$(SOURCES))
+SRC = $(shell find src -name '*.c')
+INCLUDES = -I includes
+# B_SRC = $(wildcard bonus/*.c)
 
+OBJ = ${SRC:.c=.o}
+B_OBJ = ${B_SRC:.c=.o}
 
+all: $(NAME)
 
-# Default rule
-all: $(TARGET)
+$(NAME):	$(OBJ)  $(MLX)
+			$(CC) $(FLAGS) $(OBJ) $(MLX) $(MLX_ARG) -o $(NAME)
+			@echo "$(YELLOW)${NAME} ✔️"
+			@echo "$(CYAN)Mandatory files compiled successfully ✔️$(END)"
 
-# Rule to create the target
-$(TARGET): $(OBJECTS)
-# -C - shows the directory
-#this line below builds a minlibx.a library
-	@make -C minilibx_macos
-	$(CC) $(CFLAGS) $^ -o $@
-
-# Rule to compile source files
-$(OBJDIR)/%.o: %.c 
-	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) -c $< -o $@
+%.o: %.c
+	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
 
 
-# Clean rule
+$(MLX):
+	@make -s -C $(MLX_DIR)
+
+
+$(NAME_B): 	$(B_OBJ)  $(MLX)
+			$(CC) $(FLAGS) $(B_OBJ) $(MLX) $(MLX_ARG) -o $(NAME_B)
+			@echo "$(YELLOW)${NAME_B} ✔️$(END)"
+
+n:
+	norminette src  inc
+
 clean:
-	@make clean -C minilibx_macos
-	rm -rf $(OBJDIR)
+	${RM} ${OBJ}
+	${RM} ${B_OBJ}
 
-fclean:
-	rm $(TARGET)
 
-re: clean fclean all
+fclean: clean
+	${RM} ${NAME}
+	${RM} ${NAME_B}
 
-.PHONY: all clean
+
+mlx:
+	make re -C mlx
+
+re: clean mlx all
+
+.PHONY: all clean fclean re mlx

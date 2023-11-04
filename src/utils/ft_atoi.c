@@ -1,4 +1,4 @@
-#include "../include/fdf.h"
+#include "fdf.h"
 
 static int	to_skip(char c)
 {

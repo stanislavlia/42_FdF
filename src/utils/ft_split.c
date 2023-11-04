@@ -1,4 +1,4 @@
-#include "../include/fdf.h"
+#include "fdf.h"
 
 static unsigned long	ft_strlcpy(char *dest, char *src, unsigned long size)
 {

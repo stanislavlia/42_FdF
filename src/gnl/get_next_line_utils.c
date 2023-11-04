@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "fdf.h"
 
 //This function extracts the last node from linked list
 t_list	*get_last_node(t_list *lst)
