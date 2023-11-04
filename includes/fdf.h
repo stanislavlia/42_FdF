@@ -48,6 +48,7 @@ typedef struct s_row
 }	t_row;
 
 
+
 typedef struct s_matrix
 {
 	t_row	*rows;
@@ -57,8 +58,29 @@ typedef struct s_matrix
 }	t_matrix;
 
 
+typedef struct	s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
+
+
 int		ft_atoi(const char *str);
 char	**ft_split(char const *s, char c);
+
+
+//MLX drawing
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	fill_topleft_square(void	*img, int	square_size, int	color);
+
+//Colors
+int	create_trgb(unsigned char t, unsigned char r, unsigned char g, unsigned char b);
+unsigned char	get_t(int trgb);
+unsigned char	get_r(int trgb);
+unsigned char	get_g(int trgb);
+unsigned char	get_b(int trgb);
 
 
 t_list		*get_last_node(t_list *lst);

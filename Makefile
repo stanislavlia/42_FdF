@@ -59,6 +59,7 @@ clean:
 
 
 fclean: clean
+	@make clean -C mlx
 	${RM} ${NAME}
 	${RM} ${NAME_B}
 

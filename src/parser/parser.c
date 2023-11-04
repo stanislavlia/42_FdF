@@ -91,7 +91,6 @@ t_matrix	read_matrix(int fd, int m, int n)
 }
 
 
-
 int	main()
 {
 	//t_row row = extract_row("132   1   -132   435   -1  -2          ", 2, 6);
@@ -100,12 +99,20 @@ int	main()
 	int	fd = open("/Users/sliashko/Desktop/FdF/test_maps/10-2.fdf", O_RDONLY);
 	printf("FD = %d\n", fd);
 
-	mlx_init();
+	void	*mlx = mlx_init();
+	void	*mlx_window = mlx_new_window(mlx, 1000, 1000, "My FDF window");
+	t_data	img;
 
+	img.img = mlx_new_image(mlx, 1000, 1000);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
+						&img.endian);
 
+	fill_topleft_square(&(img.img), 300, 0x00FFFFAC);
+	mlx_put_image_to_window(mlx, mlx_window, img.img, 0, 0);
 
-	t_matrix matrix = read_matrix(fd, 10, 10);
-	printf("some el there %d\n", matrix.rows[0].values[3].z);
+	mlx_loop(mlx);
+	// t_matrix matrix = read_matrix(fd, 10, 10);
+	// printf("some el there %d\n", matrix.rows[0].values[3].z);
 
 
 }
