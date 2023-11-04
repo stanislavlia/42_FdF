@@ -14,7 +14,8 @@ NAME = fdf
 NAME_B = fdfb
 CC = @gcc
 RM = @rm -f
-FLAGS = -Wall -Wextra -Werror
+#FLAGS = -Wall -Wextra -Werror 
+FLAGS = 	#turn off flags for DEV
 
 YELLOW = \033[33;49;1m
 CYAN = \033[33;36;1m

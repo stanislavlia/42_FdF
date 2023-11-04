@@ -59,18 +59,17 @@ t_row	extract_row(char *row, int y, int row_size)
 	{
 		row_extracted[x_coord].x = x_coord;
 		row_extracted[x_coord].y = y;
-		row_extracted[x_coord].z = ft_atoi(array_row[x_coord]); //TODO: adress case of (num,color) BONUS part
-		//printf("X = %d; Y = %d; Z = %d \n", x_coord, y, ft_atoi(array_row[x_coord]));
+		row_extracted[x_coord].z_color_pair = array_row[x_coord];
+		set_z_and_color(&(row_extracted[x_coord]), DEFAULT_COLOR);
+		printf("x = %d; y = %d; z = %d; color = %d\n", x_coord, y, row_extracted[x_coord].z, row_extracted[x_coord].color);
 
 		x_coord++;
 	}
-	//DONT FORGET TO FREE array_row
 	row_ret.values = row_extracted;
 	row_ret.y = y;
 	free_2d_array(array_row);
 	return (row_ret);
 }
-
 
 t_matrix	read_matrix(int fd, int m, int n)
 {
@@ -78,6 +77,8 @@ t_matrix	read_matrix(int fd, int m, int n)
 	int		y_coord;
 	t_matrix	matrix;
 
+	matrix.m = m;
+	matrix.n = n;
 	y_coord = 0;
 	matrix.rows = (t_row *) malloc(sizeof(t_row) * m);
 	while (y_coord < m)
@@ -90,29 +91,33 @@ t_matrix	read_matrix(int fd, int m, int n)
 	return matrix;
 }
 
-
 int	main()
 {
 	//t_row row = extract_row("132   1   -132   435   -1  -2          ", 2, 6);
 
 	
-	int	fd = open("/Users/sliashko/Desktop/FdF/test_maps/10-2.fdf", O_RDONLY);
+	int	fd = open("/Users/sliashko/Desktop/FdF/test_maps/elem-col.fdf", O_RDONLY);
 	printf("FD = %d\n", fd);
 
 	void	*mlx = mlx_init();
 	void	*mlx_window = mlx_new_window(mlx, 1000, 1000, "My FDF window");
 	t_data	img;
+	t_vars  vars;
+	vars.win = mlx_window;
+	vars.mlx = mlx;
 
-	img.img = mlx_new_image(mlx, 1000, 1000);
+	//printf("Atoi base result = %d \n", ft_atoi_base("1A", "0123456789ABCDEF"));
+	img.img = mlx_new_image(mlx, 100, 100);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 						&img.endian);
 
-	fill_topleft_square(&(img.img), 300, 0x00FFFFAC);
-	mlx_put_image_to_window(mlx, mlx_window, img.img, 0, 0);
+	t_matrix matrix = read_matrix(fd, 10, 10);
+	printf("M = %d\nN = %d\n", matrix.m, matrix.n);
 
-	mlx_loop(mlx);
-	// t_matrix matrix = read_matrix(fd, 10, 10);
-	// printf("some el there %d\n", matrix.rows[0].values[3].z);
+	// mlx_hook(vars.win, 2, 1L<<0, close_window, &vars);
+	// display_matrix(&(img.img), matrix);
+	// mlx_put_image_to_window(mlx, mlx_window, img.img, 0, 0);
 
-
+	// mlx_loop(mlx);
 }
+
