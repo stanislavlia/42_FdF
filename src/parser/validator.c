@@ -1,21 +1,55 @@
 #include	"fdf.h"
 
-//it separates (z_val, color) pair if there is color in this vector
-// otherwise just write value to vec.z 
-void	set_z_and_color(t_vector	*vec, int	default_color)
+int		len_of_array(char	**array)
 {
 	int	i;
 
 	i = 0;
-	vec->z = ft_atoi(vec->z_color_pair);
-	while (vec->z_color_pair[i] != '\0')
+	while (array[i] != NULL )
 	{
-		if (vec->z_color_pair[i] == ',')
-		{
-			vec->color = ft_atoi_base((vec->z_color_pair) + i + 3, "0123456789ABCDEF");
-			return ;
-		}
 		i++;
 	}
-	vec->color = default_color;
+	return (i);
+}
+
+
+int		is_map_valid(char	*path_to_map)
+{
+	int	fd;
+	int	els_in_row;
+	char	*line;
+	char	**array;
+
+	fd = open(path_to_map, O_RDONLY);
+	if	(fd == -1)
+		return (0);
+	els_in_row = -11;
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		array = ft_split(line, ' ');
+		//printf("The last element in array is %s\n", array[10]);
+		printf("Num elements in a row = %d\n", len_of_array(array));
+		if	(len_of_array(array) == els_in_row || els_in_row == -11)
+			els_in_row = len_of_array(array);
+		else
+		{
+			printf("Map validation failed\n");
+			ft_free_array(&array);
+			return (0);
+		}
+		free(line);
+		ft_free_array(&array);
+		line = get_next_line(fd);
+	}
+	return (1);
+}
+
+
+int	main()
+{
+	
+	char	*path = "/Users/sliashko/Desktop/FdF/test_maps/testmap.fdf";
+	printf("Is map valid? =  %d \n", is_map_valid(path));
+
 }

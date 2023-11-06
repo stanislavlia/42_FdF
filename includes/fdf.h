@@ -98,6 +98,9 @@ unsigned char	get_b(int trgb);
 //Validation and parsing
 void	set_z_and_color(t_vector	*vec, int	default_color);
 
+//Cleaning functions
+void	ft_free_array(char	***array_of_str);
+
 //GNL
 t_list		*get_last_node(t_list *lst);
 int			search_for_newline(t_list *list);

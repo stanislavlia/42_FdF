@@ -71,7 +71,7 @@ t_row	extract_row(char *row, int y, int row_size)
 	return (row_ret);
 }
 
-t_matrix	read_matrix(int fd, int m, int n)
+t_matrix	read_matrix(int fd, int m, int n) //TODO: Create a function that will free the matrix
 {
 	char	*curr_line;
 	int		y_coord;
@@ -91,33 +91,53 @@ t_matrix	read_matrix(int fd, int m, int n)
 	return matrix;
 }
 
-int	main()
+//it separates (z_val, color) pair if there is color in this vector
+// otherwise just write value to vec.z 
+void	set_z_and_color(t_vector	*vec, int	default_color)
 {
-	//t_row row = extract_row("132   1   -132   435   -1  -2          ", 2, 6);
+	int	i;
 
-	
-	int	fd = open("/Users/sliashko/Desktop/FdF/test_maps/elem-col.fdf", O_RDONLY);
-	printf("FD = %d\n", fd);
-
-	void	*mlx = mlx_init();
-	void	*mlx_window = mlx_new_window(mlx, 1000, 1000, "My FDF window");
-	t_data	img;
-	t_vars  vars;
-	vars.win = mlx_window;
-	vars.mlx = mlx;
-
-	//printf("Atoi base result = %d \n", ft_atoi_base("1A", "0123456789ABCDEF"));
-	img.img = mlx_new_image(mlx, 100, 100);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-						&img.endian);
-
-	t_matrix matrix = read_matrix(fd, 10, 10);
-	printf("M = %d\nN = %d\n", matrix.m, matrix.n);
-
-	// mlx_hook(vars.win, 2, 1L<<0, close_window, &vars);
-	// display_matrix(&(img.img), matrix);
-	// mlx_put_image_to_window(mlx, mlx_window, img.img, 0, 0);
-
-	// mlx_loop(mlx);
+	i = 0;
+	vec->z = ft_atoi(vec->z_color_pair);
+	while (vec->z_color_pair[i] != '\0')
+	{
+		if (vec->z_color_pair[i] == ',')
+		{
+			vec->color = ft_atoi_base((vec->z_color_pair) + i + 3, "0123456789ABCDEF");
+			return ;
+		}
+		i++;
+	}
+	vec->color = default_color;
 }
+
+
+// int	main()
+// {
+// 	//t_row row = extract_row("132   1   -132   435   -1  -2          ", 2, 6);
+	
+// 	int	fd = open("/Users/sliashko/Desktop/FdF/test_maps/elem-col.fdf", O_RDONLY);
+// 	printf("FD = %d\n", fd);
+
+// 	void	*mlx = mlx_init();
+// 	void	*mlx_window = mlx_new_window(mlx, 1000, 1000, "My FDF window");
+// 	t_data	img;
+// 	t_vars  vars;
+// 	vars.win = mlx_window;
+// 	vars.mlx = mlx;
+
+// 	//printf("Atoi base result = %d \n", ft_atoi_base("1A", "0123456789ABCDEF"));
+// 	img.img = mlx_new_image(mlx, 100, 100);
+// 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
+// 						&img.endian);
+
+// 	t_matrix matrix = read_matrix(fd, 10, 10);
+// 	printf("M = %d\nN = %d\n", matrix.m, matrix.n);
+
+// 	// mlx_hook(vars.win, 2, 1L<<0, close_window, &vars);
+// 	// display_matrix(&(img.img), matrix);
+// 	// mlx_put_image_to_window(mlx, mlx_window, img.img, 0, 0);
+// 	// mlx_loop(mlx);
+
+// }
 
