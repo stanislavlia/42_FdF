@@ -70,4 +70,7 @@ mlx:
 
 re: clean mlx all
 
-.PHONY: all clean fclean re mlx
+check_leaks:
+			leaks --atExit -- ./$(NAME)
+
+.PHONY: all clean fclean re mlx check_leaks

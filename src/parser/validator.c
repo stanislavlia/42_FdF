@@ -44,12 +44,3 @@ int		is_map_valid(char	*path_to_map)
 	}
 	return (1);
 }
-
-
-int	main()
-{
-	
-	char	*path = "/Users/sliashko/Desktop/FdF/test_maps/testmap.fdf";
-	printf("Is map valid? =  %d \n", is_map_valid(path));
-
-}

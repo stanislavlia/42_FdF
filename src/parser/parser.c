@@ -86,6 +86,7 @@ t_matrix	read_matrix(int fd, int m, int n) //TODO: Create a function that will f
 		curr_line = get_next_line(fd);
 		printf("Line: %s", curr_line);
 		matrix.rows[y_coord] = extract_row(curr_line, y_coord, n);
+		free(curr_line);
 		y_coord++;
 	}
 	return matrix;
@@ -109,6 +110,18 @@ void	set_z_and_color(t_vector	*vec, int	default_color)
 		i++;
 	}
 	vec->color = default_color;
+}
+
+int	main()
+{
+	int	fd = open("/Users/sliashko/Desktop/FdF/test_maps/elem-col.fdf", O_RDONLY);
+
+	is_map_valid("/Users/sliashko/Desktop/FdF/test_maps/elem-col.fdf");
+
+	t_matrix	matrix = read_matrix(fd, 10, 10 );
+	printf("matrix[3][3]: z and color = %d\n", matrix.rows[3].values[3].z);
+	free_matrix(&matrix);
+	
 }
 
 

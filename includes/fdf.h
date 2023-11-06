@@ -97,9 +97,11 @@ unsigned char	get_b(int trgb);
 
 //Validation and parsing
 void	set_z_and_color(t_vector	*vec, int	default_color);
+int		is_map_valid(char	*path_to_map);
 
 //Cleaning functions
 void	ft_free_array(char	***array_of_str);
+void	free_matrix(t_matrix	*matrix_ptr);
 
 //GNL
 t_list		*get_last_node(t_list *lst);
