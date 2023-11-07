@@ -16,9 +16,12 @@
 #  define BUFFER_SIZE 10
 # endif
 
-# ifndef DEFAULT_COLOR
-#  define DEFAULT_COLOR 0xFFFFFF
-# endif
+
+#define DEFAULT_COLOR 0xFFFFFF
+#define WIDTH 1000
+#define HEIGHT 1000
+
+
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -76,10 +79,22 @@ typedef struct	s_vars {
 }				t_vars;
 
 
+typedef	struct s_environment
+{
+	void		*mlx;
+	void		*mlx_window;
+	t_data		img;
+	t_matrix	map;
+
+}			t_environment;
+
+
+
 //Utils
 int		ft_atoi(const char *str);
 char	**ft_split(char const *s, char c);
 int		ft_atoi_base(char *str, char *base);
+void	setup_environment(t_environment *env_ptr);
 
 //MLX drawing
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);

@@ -112,45 +112,28 @@ void	set_z_and_color(t_vector	*vec, int	default_color)
 	vec->color = default_color;
 }
 
+
 int	main()
 {
+	
 	int	fd = open("/Users/sliashko/Desktop/FdF/test_maps/elem-col.fdf", O_RDONLY);
+	printf("FD = %d\n", fd);
 
-	is_map_valid("/Users/sliashko/Desktop/FdF/test_maps/elem-col.fdf");
-
-	t_matrix	matrix = read_matrix(fd, 10, 10 );
-	printf("matrix[3][3]: z and color = %d\n", matrix.rows[3].values[3].z);
-	free_matrix(&matrix);
+	t_environment	env;
 	
+
+	// void	*mlx = mlx_init();
+	// void	*mlx_window = mlx_new_window(mlx, 1000, 1000, "My FDF window");
+
+	setup_environment(&env);
+	env.map = read_matrix(fd, 10, 10);
+	printf("M = %d\nN = %d\n", env.map.m, env.map.n);
+
+	mlx_hook(env.mlx_window, 2, 1L<<0, close_window, &env);
+	display_matrix(&(env.img.img), env.map);
+	mlx_put_image_to_window(env.mlx, env.mlx_window, env.img.img, 500, 500);
+	mlx_loop(env.mlx);
+	free_matrix(&env.map);
+	exit(1);
 }
-
-
-// int	main()
-// {
-// 	//t_row row = extract_row("132   1   -132   435   -1  -2          ", 2, 6);
-	
-// 	int	fd = open("/Users/sliashko/Desktop/FdF/test_maps/elem-col.fdf", O_RDONLY);
-// 	printf("FD = %d\n", fd);
-
-// 	void	*mlx = mlx_init();
-// 	void	*mlx_window = mlx_new_window(mlx, 1000, 1000, "My FDF window");
-// 	t_data	img;
-// 	t_vars  vars;
-// 	vars.win = mlx_window;
-// 	vars.mlx = mlx;
-
-// 	//printf("Atoi base result = %d \n", ft_atoi_base("1A", "0123456789ABCDEF"));
-// 	img.img = mlx_new_image(mlx, 100, 100);
-// 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-// 						&img.endian);
-
-// 	t_matrix matrix = read_matrix(fd, 10, 10);
-// 	printf("M = %d\nN = %d\n", matrix.m, matrix.n);
-
-// 	// mlx_hook(vars.win, 2, 1L<<0, close_window, &vars);
-// 	// display_matrix(&(img.img), matrix);
-// 	// mlx_put_image_to_window(mlx, mlx_window, img.img, 0, 0);
-// 	// mlx_loop(mlx);
-
-// }
 
