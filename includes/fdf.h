@@ -22,7 +22,7 @@
 #define HEIGHT 1000
 
 
-
+# include <math.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
@@ -79,14 +79,14 @@ typedef struct	s_vars {
 }				t_vars;
 
 
-typedef	struct s_environment
+typedef	struct s_env
 {
 	void		*mlx;
 	void		*mlx_window;
 	t_data		img;
 	t_matrix	map;
 
-}			t_environment;
+}			t_env;
 
 
 
@@ -94,7 +94,7 @@ typedef	struct s_environment
 int		ft_atoi(const char *str);
 char	**ft_split(char const *s, char c);
 int		ft_atoi_base(char *str, char *base);
-void	setup_environment(t_environment *env_ptr);
+void	setup_environment(t_env *env_ptr);
 
 //MLX drawing
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);

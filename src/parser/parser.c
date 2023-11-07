@@ -113,27 +113,24 @@ void	set_z_and_color(t_vector	*vec, int	default_color)
 }
 
 
-int	main()
-{
+// int	main()
+// {
 	
-	int	fd = open("/Users/sliashko/Desktop/FdF/test_maps/elem-col.fdf", O_RDONLY);
-	printf("FD = %d\n", fd);
+// 	int	fd = open("/Users/sliashko/Desktop/FdF/test_maps/elem-col.fdf", O_RDONLY);
+// 	printf("FD = %d\n", fd);
 
-	t_environment	env;
+// 	t_env	env;
 	
 
-	// void	*mlx = mlx_init();
-	// void	*mlx_window = mlx_new_window(mlx, 1000, 1000, "My FDF window");
+// 	setup_environment(&env);
+// 	env.map = read_matrix(fd, 10, 10);
+// 	printf("M = %d\nN = %d\n", env.map.m, env.map.n);
 
-	setup_environment(&env);
-	env.map = read_matrix(fd, 10, 10);
-	printf("M = %d\nN = %d\n", env.map.m, env.map.n);
-
-	mlx_hook(env.mlx_window, 2, 1L<<0, close_window, &env);
-	display_matrix(&(env.img.img), env.map);
-	mlx_put_image_to_window(env.mlx, env.mlx_window, env.img.img, 500, 500);
-	mlx_loop(env.mlx);
-	free_matrix(&env.map);
-	exit(1);
-}
+// 	mlx_hook(env.mlx_window, 2, 1L<<0, close_window, &env);
+// 	display_matrix(&(env.img.img), env.map);
+// 	mlx_put_image_to_window(env.mlx, env.mlx_window, env.img.img, 500, 500);
+// 	mlx_loop(env.mlx);
+// 	free_matrix(&env.map);
+// 	exit(1);
+// }
 
