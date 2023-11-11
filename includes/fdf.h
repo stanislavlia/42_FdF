@@ -99,10 +99,16 @@ void	setup_environment(t_env *env_ptr);
 //MLX drawing
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	fill_topleft_square(void	*img, int	square_size, int	color);
-void	display_matrix(void	*img, t_matrix matrix);
+void	display_static_matrix(t_env *env, int x_margin, int y_margin);
 int	close_window(int keycode, t_vars	*vars);
 void	draw_line(t_vector p1, t_vector p2, t_env *env);
 
+//Linear Algebra functions
+void	addto_x_vec(t_vector	*vec, int val);
+void	addto_y_vec(t_vector	*vec, int val);
+void	addto_z_vec(t_vector	*vec, int val)
+void	vec_add_vec(t_vector *vec1, t_vector *vec2);
+int		dot_product(t_vector *vec1, t_vector *vec2);
 
 
 //Colors

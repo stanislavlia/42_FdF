@@ -31,27 +31,45 @@ void	fill_topleft_square(void	*img, int	square_size, int	color)
 }
 
 
-void	display_matrix(void		*img, t_matrix matrix)
-{
-	int	default_color = create_trgb(0, 200, 100, 0);
-	int	highval_color = create_trgb(0, 255, 50, 255);
-	int	i = 0;
-	int	j = 0;
-	int	z_val;
+// void	display_matrix(void		*img, t_matrix matrix)
+// {
+// 	int	default_color = create_trgb(0, 200, 100, 0);
+// 	int	highval_color = create_trgb(0, 255, 50, 255);
+// 	int	i = 0;
+// 	int	j = 0;
+// 	int	z_val;
 
-	while (i < matrix.m)
+// 	while (i < matrix.m)
+// 	{
+// 		j = 0;
+// 		while (j < matrix.n)
+// 		{	
+// 			z_val = matrix.rows[i].values[j].z;
+// 			if (z_val > 5)
+// 				my_mlx_pixel_put(img, j, i, highval_color);
+// 			else
+// 				my_mlx_pixel_put(img, j, i, default_color);
+// 			printf("i = %d; j = %d\n", i, j);
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// }
+
+void	display_static_matrix(t_env *env, int x_margin, int y_margin)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < env->map.m)
 	{
 		j = 0;
-		while (j < matrix.n)
-		{	
-			z_val = matrix.rows[i].values[j].z;
-			if (z_val > 5)
-				my_mlx_pixel_put(img, j, i, highval_color);
-			else
-				my_mlx_pixel_put(img, j, i, default_color);
-			printf("i = %d; j = %d\n", i, j);
+		while (j < env->map.n)
+		{
+			my_mlx_pixel_put(&env->img.img, i * y_margin, j * x_margin, DEFAULT_COLOR);
 			j++;
 		}
 		i++;
-	}
+	}	
 }
