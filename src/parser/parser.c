@@ -112,6 +112,28 @@ void	set_z_and_color(t_vector	*vec, int	default_color)
 	vec->color = default_color;
 }
 
+int	main()
+{
+	t_env	env;
+	setup_environment(&env);
+
+	t_vector	p1;
+	t_vector	p2;
+
+	p1.x = 0; p1.y = 0;
+	p2.x = 500; p2.y = 334;
+
+
+	draw_line(p1, p2, &env);
+	// my_mlx_pixel_put(env.img.img, 51,51, DEFAULT_COLOR);
+	// my_mlx_pixel_put(env.img.img, 52, 52, DEFAULT_COLOR);
+	// my_mlx_pixel_put(env.img.img, 53, 53, DEFAULT_COLOR);
+	// my_mlx_pixel_put(env.img.img, 100, 100, DEFAULT_COLOR);
+	//fill_topleft_square(&env.img.img, 100, DEFAULT_COLOR);
+	mlx_put_image_to_window(env.mlx, env.mlx_window, env.img.img, 50, 50);
+	
+	mlx_loop(env.mlx);
+}
 
 // int	main()
 // {
@@ -128,9 +150,9 @@ void	set_z_and_color(t_vector	*vec, int	default_color)
 
 // 	mlx_hook(env.mlx_window, 2, 1L<<0, close_window, &env);
 // 	display_matrix(&(env.img.img), env.map);
-// 	mlx_put_image_to_window(env.mlx, env.mlx_window, env.img.img, 500, 500);
+
 // 	mlx_loop(env.mlx);
-// 	free_matrix(&env.map);
-// 	exit(1);
+// 	//free_matrix(&env.map);
+	
 // }
 

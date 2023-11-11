@@ -101,6 +101,8 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	fill_topleft_square(void	*img, int	square_size, int	color);
 void	display_matrix(void	*img, t_matrix matrix);
 int	close_window(int keycode, t_vars	*vars);
+void	draw_line(t_vector p1, t_vector p2, t_env *env);
+
 
 
 //Colors

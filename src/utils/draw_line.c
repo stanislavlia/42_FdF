@@ -13,7 +13,7 @@ int	is_steep(t_vector p1, t_vector p2)
 
 //Plots line with small steep (x changes faster than y)
 // Reduce num of vars
-void	draw_linelow(t_vector p1, t_vector p2)
+void	draw_linelow(t_vector p1, t_vector p2, t_env *env)
 {
 	int	dx;
 	int	dy;
@@ -37,6 +37,8 @@ void	draw_linelow(t_vector p1, t_vector p2)
 	while (x < p2.x)
 	{
 		printf("plot x = %d; y = %d\n", x, y);
+		//my_mlx_pixel_put(env->img.img, x, y, DEFAULT_COLOR);
+		my_mlx_pixel_put(&env->img.img, x, y, DEFAULT_COLOR);
 		if (D > 0)
 		{
 			y = y + y_step;
@@ -50,7 +52,7 @@ void	draw_linelow(t_vector p1, t_vector p2)
 
 //Basically swaps x and y axises
 // replace x with y in func for low steep
-void	draw_linehigh(t_vector p1, t_vector p2)
+void	draw_linehigh(t_vector p1, t_vector p2, t_env *env)
 {
 	int	dx;
 	int	dy;
@@ -73,7 +75,9 @@ void	draw_linehigh(t_vector p1, t_vector p2)
 	D = (2 * dx) - dy;
 	while (y < p2.y)
 	{
-		printf("plot x = %d; y = %d\n", x, y);
+		printf("plot x = %d; y = %d\n", x, y); //replace with put_pixel
+		//my_mlx_pixel_put(env->img.img, x, y, DEFAULT_COLOR);
+		my_mlx_pixel_put(&env->img.img, x, y, DEFAULT_COLOR);
 		if (D > 0)
 		{
 			x = x + x_step;
@@ -90,27 +94,27 @@ void	draw_line(t_vector p1, t_vector p2, t_env *env)
 	if	(is_steep(p1, p2))
 	{
 		if (p2.y > p1.y)
-			draw_linehigh(p1, p2);
+			draw_linehigh(p1, p2, env);
 		else
-			draw_linehigh(p2, p1);
+			draw_linehigh(p2, p1, env);
 	}
 	else
 	{
 		if (p2.x > p1.x)
-			draw_linelow(p1, p2);
+			draw_linelow(p1, p2, env);
 		else
-			draw_linelow(p2, p1);
+			draw_linelow(p2, p1, env);
 	}
 }
 
 
-int	main()
-{
-	t_vector	p1;
-	t_vector	p2;
-	t_env		env;
+// int	main()
+// {
+// 	t_vector	p1;
+// 	t_vector	p2;
+// 	t_env		env;
 
-	p1.x = 0; p1.y = -4;
-	p2.x = 0; p2.y = -10;
-	draw_line(p1, p2, &env);
-}
+// 	p1.x = 0; p1.y = -4;
+// 	p2.x = 0; p2.y = -10;
+// 	draw_line(p1, p2, &env);
+// }
