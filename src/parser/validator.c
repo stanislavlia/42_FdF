@@ -25,6 +25,7 @@ int	get_m_rows(char *path_to_map)
 	{
 		m_rows++;
 	}
+	printf("M_rows = %d\n\n\n", m_rows);
 	return (m_rows);
 }
 

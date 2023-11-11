@@ -20,21 +20,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *) dst = color;
 }
 
-// void	draw_pixel(t_env *env, int i, int j)
-// {
-// 	if (env->map.rows[i].values[j].z < 5)
-// 	{
-// 		my_mlx_pixel_put(&env->img.img, env->map.rows[i].values[j].x,
-// 			env->map.rows[i].values[j].y,
-// 			env->map.rows[i].values[j].color);
-// 	}
-// 	else
-// 	{
-// 		my_mlx_pixel_put(&env->img.img, env->map.rows[i].values[j].x,
-// 			env->map.rows[i].values[j].y,
-// 			create_trgb(0, 255, 0, 100));
-// 	}
-// }
+
 
 void	draw_pixel(t_env *env, int i, int j)
 {

@@ -3,6 +3,8 @@
 
 void	setup_environment(t_env *env_ptr)
 {
+	
+
 	env_ptr->mlx = mlx_init();
 	env_ptr->mlx_window = mlx_new_window(env_ptr->mlx, WIDTH, HEIGHT, "FDF project");
 	env_ptr->img.img = mlx_new_image(env_ptr->mlx, WIDTH, HEIGHT);

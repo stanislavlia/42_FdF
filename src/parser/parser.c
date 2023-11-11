@@ -41,7 +41,7 @@ void	free_2d_array(char **array)
 	free(array);
 }
 
-t_row	extract_row(char *row, int y, int row_size)
+t_row	extract_row(char *row, int y, int row_size, t_matrix matrix)
 {
 	char	**array_row;
 	int		x_coord;
@@ -55,8 +55,8 @@ t_row	extract_row(char *row, int y, int row_size)
 	x_coord = 0;
 	while (x_coord < row_size)
 	{
-		row_extracted[x_coord].x = x_coord * W_MARGIN;
-		row_extracted[x_coord].y = y * H_MARGIN;
+		row_extracted[x_coord].x = x_coord * matrix.x_margin;
+		row_extracted[x_coord].y = y * matrix.y_margin;
 		row_extracted[x_coord].z_color_pair = array_row[x_coord];
 		set_z_and_color(&(row_extracted[x_coord]), DEFAULT_COLOR);
 		printf("x = %d; y = %d; z = %d; color = %d\n", x_coord, y, row_extracted[x_coord].z, row_extracted[x_coord].color);
@@ -77,15 +77,15 @@ t_matrix	read_matrix(int fd, int m, int n) //TODO: Create a function that will f
 
 	matrix.m = m;
 	matrix.n = n;
-	matrix.x_margin = W_MARGIN;
-	matrix.y_margin = H_MARGIN;
+	matrix.x_margin = (WIDTH / n) / 1.5;
+	matrix.y_margin = (HEIGHT / m) / 1.5;
 	y_coord = 0;
 	matrix.rows = (t_row *) malloc(sizeof(t_row) * m);
 	while (y_coord < m)
 	{	
 		curr_line = get_next_line(fd);
 		printf("Line: %s", curr_line);
-		matrix.rows[y_coord] = extract_row(curr_line, y_coord, n);
+		matrix.rows[y_coord] = extract_row(curr_line, y_coord, n, matrix);
 		free(curr_line);
 		y_coord++;
 	}
@@ -138,27 +138,27 @@ void	set_z_and_color(t_vector	*vec, int	default_color)
 // 	mlx_loop(env.mlx);
 // }
 
-int	main()
-{
+// int	main()
+// {
 	
-	int	fd = open("/Users/sliashko/Desktop/FdF/test_maps/42.fdf", O_RDONLY);
-	printf("FD = %d\n", fd);
+// 	int	fd = open("/Users/sliashko/Desktop/FdF/test_maps/42.fdf", O_RDONLY);
+// 	printf("FD = %d\n", fd);
 
-	t_env	env;
+// 	t_env	env;
 	
 
-	setup_environment(&env);
-	env.map = read_matrix(fd, 11, 19);
-	env.map.x_margin *= 2;
-	env.map.y_margin *= 4;
-	printf("M = %d\nN = %d\n", env.map.m, env.map.n);
+// 	setup_environment(&env);
+// 	env.map = read_matrix(fd, 11, 19);
+// 	env.map.x_margin *= 2;
+// 	env.map.y_margin *= 4;
+// 	printf("M = %d\nN = %d\n", env.map.m, env.map.n);
 
-	mlx_hook(env.mlx_window, 2, 1L<<0, close_window, &env);
-	display_static_matrix(&env);
-	mlx_put_image_to_window(env.mlx, env.mlx_window, env.img.img, 50, 50);
+// 	mlx_hook(env.mlx_window, 2, 1L<<0, close_window, &env);
+// 	display_static_matrix(&env);
+// 	mlx_put_image_to_window(env.mlx, env.mlx_window, env.img.img, 50, 50);
 
-	mlx_loop(env.mlx);
-	//free_matrix(&env.map);
+// 	mlx_loop(env.mlx);
+// 	//free_matrix(&env.map);
 	
-}
+// }
 

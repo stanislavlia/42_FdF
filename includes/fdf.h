@@ -17,10 +17,10 @@
 # endif
 
 #define DEFAULT_COLOR 0xFFFFFF
-#define WIDTH 1000
-#define HEIGHT 1000
-#define W_MARGIN 20
-#define H_MARGIN 20
+#define WIDTH 1920
+#define HEIGHT 1080
+#define W_MARGIN 2
+#define H_MARGIN 2
 
 # include <math.h>
 # include <unistd.h>
@@ -121,8 +121,11 @@ unsigned char	get_g(int trgb);
 unsigned char	get_b(int trgb);
 
 //Validation and parsing
-void	set_z_and_color(t_vector	*vec, int	default_color);
-int		is_map_valid(char	*path_to_map);
+void		set_z_and_color(t_vector	*vec, int	default_color);
+int			is_map_valid(char	*path_to_map);
+int			get_m_rows(char *path_to_map);
+int			get_n_columns(char *path_to_map);
+t_matrix	read_matrix(int fd, int m, int n);
 
 //Cleaning functions
 void	ft_free_array(char	***array_of_str);
