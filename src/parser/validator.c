@@ -12,6 +12,40 @@ int		len_of_array(char	**array)
 	return (i);
 }
 
+int	get_m_rows(char *path_to_map)
+{
+	int	fd;
+	int	m_rows;
+	
+	fd = open(path_to_map, O_RDONLY);
+	if	(fd == -1)
+		return (0);
+	m_rows = 0;
+	while (get_next_line(fd) != NULL)
+	{
+		m_rows++;
+	}
+	return (m_rows);
+}
+
+int	get_n_columns(char *path_to_map)
+{
+	int	fd;
+	int	n_cols;
+	char	*line;
+	char	**array;
+
+	
+	fd = open(path_to_map, O_RDONLY);
+	if	(fd == -1)
+		return (0);
+	line = get_next_line(fd);
+	array = ft_split(line, ' ');
+	n_cols = len_of_array(array);
+	return (n_cols);
+}
+
+
 
 int		is_map_valid(char	*path_to_map)
 {
@@ -44,3 +78,11 @@ int		is_map_valid(char	*path_to_map)
 	}
 	return (1);
 }
+
+
+// int	main()
+// {
+// 	char	*path = "/Users/sliashko/Desktop/FdF/test_maps/42.fdf";
+
+// 	printf("m = %d; n = %d\n", get_m_rows(path), get_n_columns(path));
+// }

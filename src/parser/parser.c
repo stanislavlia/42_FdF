@@ -41,8 +41,6 @@ void	free_2d_array(char **array)
 	free(array);
 }
 
-
-//NOTE: create func to free the row
 t_row	extract_row(char *row, int y, int row_size)
 {
 	char	**array_row;
