@@ -6,7 +6,7 @@ void	addto_x_vec(t_vector	*vec, int val)
 	vec->x = vec->x + val;
 }
 
-void	addto_x_vec(t_vector	*vec, int val)
+void	addto_y_vec(t_vector	*vec, int val)
 {
 	vec->y = vec->y + val;
 }
