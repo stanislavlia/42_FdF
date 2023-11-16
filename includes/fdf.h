@@ -19,8 +19,8 @@
 #define DEFAULT_COLOR 0xFFFFFF
 #define WIDTH 1920
 #define HEIGHT 1080
-#define W_MARGIN 2
-#define H_MARGIN 2
+#define W_MARGIN 1
+#define H_MARGIN 1
 
 //X11 events
 # define ARROW_LEFT 123
@@ -128,7 +128,13 @@ void	vec_add_vec(t_vector *vec1, t_vector *vec2);
 int		dot_product(t_vector *vec1, t_vector *vec2);
 void	shift_matrix_x(t_env *env, int shift_step);
 void	shift_matrix_y(t_env *env, int shift_step);
-
+void	scale_x_vec(t_vector	*vec, float scalar);
+void	scale_y_vec(t_vector	*vec, float scalar);
+void	scale_z_vec(t_vector	*vec, float scalar);
+void	scale_matrix(t_env *env, float scalar);
+void	isometric_proj_vec(t_vector *vec);
+void	isometric_projection(t_env *env);
+void	scale_z_matrix(t_env *env, float scalar);
 
 //Colors
 int	create_trgb(unsigned char t, unsigned char r, unsigned char g, unsigned char b);

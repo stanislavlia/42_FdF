@@ -36,4 +36,58 @@ void	shift_matrix_y(t_env *env, int shift_step)
 	}
 }
 
+void	scale_matrix(t_env *env, float scalar)
+{
+	int	i;
+	int	j;
+	
+	i = 0;
+	while (i < env->map.m)
+	{	
+		j = 0;
+		while (j < env->map.n)
+		{
+			scale_x_vec(&env->map.rows[i].values[j], scalar);
+			scale_y_vec(&env->map.rows[i].values[j], scalar);
+			scale_z_vec(&env->map.rows[i].values[j], scalar);
+			j++;
+		}
+		i++;
+	}
+}
 
+void	isometric_projection(t_env *env)
+{
+	int	i;
+	int	j;
+	
+	i = 0;
+	while (i < env->map.m)
+	{	
+		j = 0;
+		while (j < env->map.n)
+		{
+			isometric_proj_vec(&env->map.rows[i].values[j]);
+			j++;
+		}
+		i++;
+	}
+}
+
+void	scale_z_matrix(t_env *env, float scalar)
+{
+	int	i;
+	int	j;
+	
+	i = 0;
+	while (i < env->map.m)
+	{	
+		j = 0;
+		while (j < env->map.n)
+		{
+			scale_z_vec(&env->map.rows[i].values[j], scalar);
+			j++;
+		}
+		i++;
+	}
+}

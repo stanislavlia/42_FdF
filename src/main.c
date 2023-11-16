@@ -13,9 +13,12 @@
 #include "fdf.h"
 
 // TODO
-// - Ask how to redraw the matrix again after pressing a key
-// - Create matmul, search for rotation, projection, scale, shift matrices
+// - Ask how to redraw the matrix again after pressing a key: DONE
+// - Change x, y, z from into to float or double to make picture smoother 
+
+// - Create matmul, search for rotation, projection, scale, shift matrices: shift is DONE
 // - read about paralled and isometric projections
+
 // - Bind some keys to test operations
 // - Adjust code with Norminette
 
@@ -38,11 +41,10 @@ int	main(int argc, char **argv)
 	setup_environment(&env);
 	env.map = read_matrix(fd, get_m_rows(path), get_n_columns(path));
 	printf("M = %d\nN = %d\n", env.map.m, env.map.n);
-	shift_matrix_x(&env, 500);
-	shift_matrix_y(&env, 300);
 	hook_all_funcs(&env);
+	scale_z_matrix(&env, 10);
+	isometric_projection(&env);
 	display_static_matrix(&env);
-	mlx_put_image_to_window(env.mlx, env.mlx_window, env.img.img, 50, 50);
+	mlx_put_image_to_window(env.mlx, env.mlx_window, env.img.img, 0, 0);
 	mlx_loop(env.mlx);
-
 }
