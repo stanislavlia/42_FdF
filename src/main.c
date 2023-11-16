@@ -48,3 +48,4 @@ int	main(int argc, char **argv)
 	mlx_put_image_to_window(env.mlx, env.mlx_window, env.img.img, 0, 0);
 	mlx_loop(env.mlx);
 }
+

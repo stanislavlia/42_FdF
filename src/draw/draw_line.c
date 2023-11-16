@@ -38,7 +38,7 @@ void	draw_linelow(t_vector p1, t_vector p2, t_env *env)
 	{
 		//printf("plot x = %d; y = %d\n", x, y);
 		//my_mlx_pixel_put(&(env->img.img), x, y, DEFAULT_COLOR);
-		if ((p2.z > 0))
+		if (p2.z > 0)
 			my_mlx_pixel_put(&(env->img), x, y, create_trgb(0, 255, 100, 100));
 		else
 			my_mlx_pixel_put(&(env->img), x, y, p2.color);
@@ -78,7 +78,8 @@ void	draw_linehigh(t_vector p1, t_vector p2, t_env *env)
 	D = (2 * dx) - dy;
 	while (y < p2.y)
 	{
-		if ((p2.z > 0))
+		//if ((p2.z > 0 || p1.z > 0))
+		if (p1.z > 0)
 			my_mlx_pixel_put(&(env->img), x, y, create_trgb(0, 255, 100, 100));
 		else
 			my_mlx_pixel_put(&(env->img), x, y, p2.color);

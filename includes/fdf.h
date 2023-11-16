@@ -55,6 +55,10 @@ typedef struct s_vector
 {
 	int		x;
 	int		y;
+	double	x_fl;
+	double	y_fl;
+	double	z_fl;
+
 	int		z;
 	char	*z_color_pair;
 	int		color;

@@ -57,9 +57,12 @@ t_row	extract_row(char *row, int y, int row_size, t_matrix matrix)
 	{
 		row_extracted[x_coord].x = x_coord * matrix.x_margin;
 		row_extracted[x_coord].y = y * matrix.y_margin;
+		row_extracted[x_coord].x_fl = (double) x_coord * matrix.x_margin;
+		row_extracted[x_coord].y_fl = (double) y * matrix.y_margin;
 		row_extracted[x_coord].z_color_pair = array_row[x_coord];
 		set_z_and_color(&(row_extracted[x_coord]), DEFAULT_COLOR);
-		printf("x = %d; y = %d; z = %d; color = %d\n", x_coord, y, row_extracted[x_coord].z, row_extracted[x_coord].color);
+		row_extracted[x_coord].z_fl = (double) row_extracted[x_coord].z;
+		printf("x = %d; y = %d; z = %d; color = %d\n; z_float = %f\n", x_coord, y, row_extracted[x_coord].z, row_extracted[x_coord].color, row_extracted[x_coord].z_fl);
 
 		x_coord++;
 	}
@@ -112,53 +115,4 @@ void	set_z_and_color(t_vector	*vec, int	default_color)
 	vec->color = default_color;
 }
 
-// int	main()
-// {
-// 	t_env	env;
-// 	setup_environment(&env);
-
-// 	t_vector	p1;
-// 	t_vector	p2;
-// 	t_vector	p3;
-
-// 	p1.x = 0 + 200; p1.y = 0;
-// 	p2.x = 500 + 200; p2.y = 334;
-// 	p3.x = 300 + 200; p3.y = 500;
-
-// 	draw_line(p1, p2, &env);
-// 	draw_line(p2, p3, &env);
-// 	draw_line(p3, p1, &env);
-// 	// my_mlx_pixel_put(env.img.img, 51,51, DEFAULT_COLOR);
-// 	// my_mlx_pixel_put(env.img.img, 52, 52, DEFAULT_COLOR);
-// 	// my_mlx_pixel_put(env.img.img, 53, 53, DEFAULT_COLOR);
-// 	// my_mlx_pixel_put(env.img.img, 100, 100, DEFAULT_COLOR);
-// 	//fill_topleft_square(&env.img.img, 100, DEFAULT_COLOR);
-// 	mlx_put_image_to_window(env.mlx, env.mlx_window, env.img.img, 50, 50);
-	
-// 	mlx_loop(env.mlx);
-// }
-
-// int	main()
-// {
-	
-// 	int	fd = open("/Users/sliashko/Desktop/FdF/test_maps/42.fdf", O_RDONLY);
-// 	printf("FD = %d\n", fd);
-
-// 	t_env	env;
-	
-
-// 	setup_environment(&env);
-// 	env.map = read_matrix(fd, 11, 19);
-// 	env.map.x_margin *= 2;
-// 	env.map.y_margin *= 4;
-// 	printf("M = %d\nN = %d\n", env.map.m, env.map.n);
-
-// 	mlx_hook(env.mlx_window, 2, 1L<<0, close_window, &env);
-// 	display_static_matrix(&env);
-// 	mlx_put_image_to_window(env.mlx, env.mlx_window, env.img.img, 50, 50);
-
-// 	mlx_loop(env.mlx);
-// 	//free_matrix(&env.map);
-	
-// }
 
