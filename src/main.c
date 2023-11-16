@@ -12,29 +12,14 @@
 
 #include "fdf.h"
 
-// int	main()
-// {
-	
-// 	int	fd = open("/Users/sliashko/Desktop/FdF/test_maps/42.fdf", O_RDONLY);
-// 	printf("FD = %d\n", fd);
+// TODO
+// - Ask how to redraw the matrix again after pressing a key
+// - Create matmul, search for rotation, projection, scale, shift matrices
+// - read about paralled and isometric projections
+// - Bind some keys to test operations
+// - Adjust code with Norminette
 
-// 	t_env	env;
-	
 
-// 	setup_environment(&env);
-// 	env.map = read_matrix(fd, 11, 19);
-// 	env.map.x_margin *= 2;
-// 	env.map.y_margin *= 4;
-// 	printf("M = %d\nN = %d\n", env.map.m, env.map.n);
-
-// 	mlx_hook(env.mlx_window, 2, 1L<<0, close_window, &env);
-// 	display_static_matrix(&env);
-// 	mlx_put_image_to_window(env.mlx, env.mlx_window, env.img.img, 50, 50);
-
-// 	mlx_loop(env.mlx);
-// 	//free_matrix(&env.map);
-	
-// }
 int	main(int argc, char **argv)
 {	
 	char	*path;
@@ -53,6 +38,8 @@ int	main(int argc, char **argv)
 	setup_environment(&env);
 	env.map = read_matrix(fd, get_m_rows(path), get_n_columns(path));
 	printf("M = %d\nN = %d\n", env.map.m, env.map.n);
+	shift_matrix_x(&env, 500);
+	shift_matrix_y(&env, 300);
 	display_static_matrix(&env);
 	mlx_put_image_to_window(env.mlx, env.mlx_window, env.img.img, 50, 50);
 	mlx_loop(env.mlx);

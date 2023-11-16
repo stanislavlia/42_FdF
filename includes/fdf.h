@@ -111,6 +111,8 @@ void	addto_y_vec(t_vector	*vec, int val);
 void	addto_z_vec(t_vector	*vec, int val);
 void	vec_add_vec(t_vector *vec1, t_vector *vec2);
 int		dot_product(t_vector *vec1, t_vector *vec2);
+void	shift_matrix_x(t_env *env, int shift_step);
+void	shift_matrix_y(t_env *env, int shift_step);
 
 
 //Colors
