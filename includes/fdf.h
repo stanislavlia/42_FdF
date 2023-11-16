@@ -22,6 +22,22 @@
 #define W_MARGIN 2
 #define H_MARGIN 2
 
+//X11 events
+# define ARROW_LEFT 123
+# define ARROW_RIGHT 124
+# define ARROW_DOWN 125
+# define ARROW_UP 126
+# define MINUS 27
+# define PLUS 24
+# define SPACE 49
+# define KEY_R 15
+# define MOUSE_CLICK_LEFT 1
+# define MOUSE_CLICK_RIGHT 2
+# define MOUSE_CLICK_MIDDLE 3
+# define MOUSE_WHEEL_UP 4
+# define MOUSE_WHEEL_DOWN 5
+# define ESCAPE 53
+
 # include <math.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -102,7 +118,6 @@ void	setup_environment(t_env *env_ptr);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	fill_topleft_square(void	*img, int	square_size, int	color);
 void	display_static_matrix(t_env *env);
-int	close_window(int keycode, t_vars	*vars);
 void	draw_line(t_vector p1, t_vector p2, t_env *env);
 
 //Linear Algebra functions
@@ -128,6 +143,10 @@ int			is_map_valid(char	*path_to_map);
 int			get_m_rows(char *path_to_map);
 int			get_n_columns(char *path_to_map);
 t_matrix	read_matrix(int fd, int m, int n);
+
+//Keybord events
+void	hook_all_funcs(t_env	*env);
+int	close_window(int keycode, t_env	*env);
 
 //Cleaning functions
 void	ft_free_array(char	***array_of_str);

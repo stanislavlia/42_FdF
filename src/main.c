@@ -40,6 +40,7 @@ int	main(int argc, char **argv)
 	printf("M = %d\nN = %d\n", env.map.m, env.map.n);
 	shift_matrix_x(&env, 500);
 	shift_matrix_y(&env, 300);
+	hook_all_funcs(&env);
 	display_static_matrix(&env);
 	mlx_put_image_to_window(env.mlx, env.mlx_window, env.img.img, 50, 50);
 	mlx_loop(env.mlx);
