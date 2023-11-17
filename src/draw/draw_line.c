@@ -39,9 +39,9 @@ void	draw_linelow(t_vector p1, t_vector p2, t_env *env)
 		//printf("plot x = %d; y = %d\n", x, y);
 		//my_mlx_pixel_put(&(env->img.img), x, y, DEFAULT_COLOR);
 		if (p2.z > 0)
-			my_mlx_pixel_put(&(env->img), x, y, create_trgb(0, 255, 100, 100));
+			my_mlx_pixel_put(&(env->img), x , y , create_trgb(0, 255, 100, 100));
 		else
-			my_mlx_pixel_put(&(env->img), x, y, p2.color);
+			my_mlx_pixel_put(&(env->img), x,  y , p2.color);
 		if (D > 0)
 		{
 			y = y + y_step;
@@ -55,6 +55,45 @@ void	draw_linelow(t_vector p1, t_vector p2, t_env *env)
 
 //Basically swaps x and y axises
 // replace x with y in func for low steep
+// void	draw_linehigh(t_vector p1, t_vector p2, t_env *env)
+// {
+// 	int	dx;
+// 	int	dy;
+// 	int	x_step;
+// 	int	x;
+// 	int y;
+// 	int D;
+
+
+// 	x = p1.x;
+// 	y = p1.y;
+// 	x_step = 1;
+// 	dx = p2.x - p1.x;
+// 	dy = p2.y - p1.y;
+// 	if (dx < 0)
+// 	{
+// 		x_step = -1;
+// 		dx = -dx;
+// 	}
+// 	D = (2 * dx) - dy;
+// 	while (y < p2.y)
+// 	{
+// 		//if ((p2.z > 0 || p1.z > 0))
+// 		if (p1.z > 0)
+// 			my_mlx_pixel_put(&(env->img), x + (WIDTH / 2), y + (HEIGHT / 2 ), create_trgb(0, 255, 100, 100));
+// 		else
+// 			my_mlx_pixel_put(&(env->img), x + (WIDTH / 2), y + (HEIGHT / 2), p2.color);
+// 		if (D > 0)
+// 		{
+// 			x = x + x_step;
+// 			D = D + (2 * (dx - dy));
+// 		}
+// 		else
+// 			D = D + 2 * dx;
+// 		y++;
+// 	}
+//}
+
 void	draw_linehigh(t_vector p1, t_vector p2, t_env *env)
 {
 	int	dx;
@@ -80,7 +119,7 @@ void	draw_linehigh(t_vector p1, t_vector p2, t_env *env)
 	{
 		//if ((p2.z > 0 || p1.z > 0))
 		if (p1.z > 0)
-			my_mlx_pixel_put(&(env->img), x, y, create_trgb(0, 255, 100, 100));
+			my_mlx_pixel_put(&(env->img), x , y , create_trgb(0, 255, 100, 100));
 		else
 			my_mlx_pixel_put(&(env->img), x, y, p2.color);
 		if (D > 0)
@@ -93,6 +132,7 @@ void	draw_linehigh(t_vector p1, t_vector p2, t_env *env)
 		y++;
 	}
 }
+
 
 void	draw_line(t_vector p1, t_vector p2, t_env *env)
 {

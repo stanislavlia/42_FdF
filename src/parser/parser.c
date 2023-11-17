@@ -55,15 +55,13 @@ t_row	extract_row(char *row, int y, int row_size, t_matrix matrix)
 	x_coord = 0;
 	while (x_coord < row_size)
 	{
-		row_extracted[x_coord].x = x_coord * matrix.x_margin;
-		row_extracted[x_coord].y = y * matrix.y_margin;
-		row_extracted[x_coord].x_fl = (double) x_coord * matrix.x_margin;
-		row_extracted[x_coord].y_fl = (double) y * matrix.y_margin;
+		row_extracted[x_coord].x = (x_coord - row_size / 2) * matrix.x_margin ;
+		row_extracted[x_coord].y = (y - matrix.m / 2) * matrix.y_margin;
+		row_extracted[x_coord].x_fl = (double) row_extracted[x_coord].x;
+		row_extracted[x_coord].y_fl = (double) row_extracted[x_coord].y;
 		row_extracted[x_coord].z_color_pair = array_row[x_coord];
 		set_z_and_color(&(row_extracted[x_coord]), DEFAULT_COLOR);
 		row_extracted[x_coord].z_fl = (double) row_extracted[x_coord].z;
-		printf("x = %d; y = %d; z = %d; color = %d\n; z_float = %f\n", x_coord, y, row_extracted[x_coord].z, row_extracted[x_coord].color, row_extracted[x_coord].z_fl);
-
 		x_coord++;
 	}
 	row_ret.values = row_extracted;
@@ -87,7 +85,6 @@ t_matrix	read_matrix(int fd, int m, int n) //TODO: Create a function that will f
 	while (y_coord < m)
 	{	
 		curr_line = get_next_line(fd);
-		printf("Line: %s", curr_line);
 		matrix.rows[y_coord] = extract_row(curr_line, y_coord, n, matrix);
 		free(curr_line);
 		y_coord++;

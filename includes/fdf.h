@@ -123,6 +123,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	fill_topleft_square(void	*img, int	square_size, int	color);
 void	display_static_matrix(t_env *env);
 void	draw_line(t_vector p1, t_vector p2, t_env *env);
+void	set_new_image(t_env *env);
 
 //Linear Algebra functions
 void	addto_x_vec(t_vector	*vec, int val);
@@ -157,6 +158,7 @@ t_matrix	read_matrix(int fd, int m, int n);
 //Keybord events
 void	hook_all_funcs(t_env	*env);
 int	close_window(int keycode, t_env	*env);
+
 
 //Cleaning functions
 void	ft_free_array(char	***array_of_str);

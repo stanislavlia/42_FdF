@@ -55,7 +55,6 @@ int	shift_picture(int keycode, t_env *env)
 }
 
 
-
 //Doesnt work for now
 int	scale_picture(int keycode, t_env *env)
 {
@@ -74,8 +73,7 @@ int	scale_picture(int keycode, t_env *env)
 	return (1);
 }
 
-
-int	key_hook(int keycode, t_env *env)
+int	key_hook(int keycode, t_env *env, t_env *init_env)
 {
 	if (keycode == ESCAPE)
 		close_window(keycode, env);
