@@ -15,19 +15,19 @@ int	is_steep(t_vector p1, t_vector p2)
 // Reduce num of vars
 void	draw_linelow(t_vector p1, t_vector p2, t_env *env)
 {
-	int	dx;
-	int	dy;
+	double	dx;
+	double	dy;
 	int	y_step;
 	int	x;
 	int y;
-	int D;
+	double D;
 
 
 	x = p1.x;
 	y = p1.y;
 	y_step = 1;
-	dx = p2.x - p1.x;
-	dy = p2.y - p1.y;
+	dx = p2.x_fl - p1.x_fl;
+	dy = p2.y_fl - p1.y_fl;
 	if (dy < 0)
 	{
 		y_step = -1;
@@ -38,8 +38,11 @@ void	draw_linelow(t_vector p1, t_vector p2, t_env *env)
 	{
 		//printf("plot x = %d; y = %d\n", x, y);
 		//my_mlx_pixel_put(&(env->img.img), x, y, DEFAULT_COLOR);
-		if (p2.z > 0)
-			my_mlx_pixel_put(&(env->img), x , y , create_trgb(0, 255, 100, 100));
+		if (p2.z_fl > p1.z_fl)
+		{
+			p2.color = create_trgb(0, 200, 50, 100);
+			my_mlx_pixel_put(&(env->img), x , y , p2.color);
+		}
 		else
 			my_mlx_pixel_put(&(env->img), x,  y , p2.color);
 		if (D > 0)
@@ -96,12 +99,12 @@ void	draw_linelow(t_vector p1, t_vector p2, t_env *env)
 
 void	draw_linehigh(t_vector p1, t_vector p2, t_env *env)
 {
-	int	dx;
-	int	dy;
+	double	dx;
+	double	dy;
 	int	x_step;
 	int	x;
 	int y;
-	int D;
+	double D;
 
 
 	x = p1.x;
@@ -118,10 +121,12 @@ void	draw_linehigh(t_vector p1, t_vector p2, t_env *env)
 	while (y < p2.y)
 	{
 		//if ((p2.z > 0 || p1.z > 0))
-		if (p1.z > 0)
-			my_mlx_pixel_put(&(env->img), x , y , create_trgb(0, 255, 100, 100));
+		if (p1.z > p2.z)
+		{	p2.color = create_trgb(0, 200, 50, 100);
+			my_mlx_pixel_put(&(env->img), floor((double)x) + 1 , floor((double)y) + 1 , p2.color);
+		}
 		else
-			my_mlx_pixel_put(&(env->img), x, y, p2.color);
+			my_mlx_pixel_put(&(env->img), floor((double)x) + 1, floor((double)y) + 1, p2.color);
 		if (D > 0)
 		{
 			x = x + x_step;
@@ -136,6 +141,10 @@ void	draw_linehigh(t_vector p1, t_vector p2, t_env *env)
 
 void	draw_line(t_vector p1, t_vector p2, t_env *env)
 {
+	// if (abs(p2.x) >= WIDTH / 2 || abs(p2.y) >= HEIGHT / 2)
+	// 	return ;
+	// if (abs(p1.x) >= WIDTH / 2 || abs(p1.y) >= HEIGHT / 2)
+	// 	return ;
 	if	(is_steep(p1, p2))
 	{
 		if (p2.y > p1.y)

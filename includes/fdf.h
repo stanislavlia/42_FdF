@@ -107,6 +107,8 @@ typedef	struct s_env
 	void		*mlx_window;
 	t_data		img;
 	t_matrix	map;
+	t_matrix	init_isom_map;
+	t_matrix	init_par_map;
 
 }			t_env;
 
@@ -138,8 +140,10 @@ void	scale_y_vec(t_vector	*vec, float scalar);
 void	scale_z_vec(t_vector	*vec, float scalar);
 void	scale_matrix(t_env *env, float scalar);
 void	isometric_proj_vec(t_vector *vec);
-void	isometric_projection(t_env *env);
+void	isometric_projection(t_matrix *map);
 void	scale_z_matrix(t_env *env, float scalar);
+void	rotate_matrix_z(t_matrix *matrix, double angle);
+void	rotate_matrix_x(t_matrix *matrix, double angle);
 
 //Colors
 int	create_trgb(unsigned char t, unsigned char r, unsigned char g, unsigned char b);
@@ -158,7 +162,8 @@ t_matrix	read_matrix(int fd, int m, int n);
 //Keybord events
 void	hook_all_funcs(t_env	*env);
 int	close_window(int keycode, t_env	*env);
-
+int	reset_to_isom(int keycode, t_env *env);
+int	rotate_pic_z(int keycode, t_env *env);
 
 //Cleaning functions
 void	ft_free_array(char	***array_of_str);

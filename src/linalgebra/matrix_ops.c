@@ -56,24 +56,26 @@ void	scale_matrix(t_env *env, float scalar)
 	}
 }
 
-void	isometric_projection(t_env *env)
+void	isometric_projection(t_matrix *map)
 {
 	int	i;
 	int	j;
 	
 	i = 0;
-	while (i < env->map.m)
+	while (i < map->m)
 	{	
 		j = 0;
-		while (j < env->map.n)
+		while (j < map->n)
 		{
-			isometric_proj_vec(&env->map.rows[i].values[j]);
+			isometric_proj_vec(&map->rows[i].values[j]);
 			j++;
 		}
 		i++;
 	}
 }
 
+
+// Instead of env I should pass the map!
 void	scale_z_matrix(t_env *env, float scalar)
 {
 	int	i;
@@ -86,6 +88,7 @@ void	scale_z_matrix(t_env *env, float scalar)
 		while (j < env->map.n)
 		{
 			scale_z_vec(&env->map.rows[i].values[j], scalar);
+			scale_z_vec(&env->init_isom_map.rows[i].values[j], scalar);
 			j++;
 		}
 		i++;

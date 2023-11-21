@@ -51,6 +51,10 @@ int	shift_picture(int keycode, t_env *env)
 		set_new_image(env);
 		mlx_put_image_to_window(env->mlx, env->mlx_window, env->img.img, 0, 0);
 	}
+	if (keycode == KEY_R)
+	{
+		reset_to_isom(keycode, env);
+	}
 	return (1);
 }
 
@@ -86,4 +90,6 @@ int	key_hook(int keycode, t_env *env, t_env *init_env)
 void	hook_all_funcs(t_env	*env)
 {
 	mlx_key_hook(env->mlx_window, key_hook, env);
+	mlx_hook(env->mlx_window, MOUSE_CLICK_LEFT, 0, rotate_pic_z, env);
+	mlx_hook(env->mlx_window, MOUSE_CLICK_RIGHT, 0, rotate_pic_z, env);
 }
