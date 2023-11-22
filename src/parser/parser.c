@@ -100,6 +100,10 @@ void	set_z_and_color(t_vector	*vec, int	default_color)
 
 	i = 0;
 	vec->z = ft_atoi(vec->z_color_pair);
+	if (vec->z > 0)
+		vec->color = create_trgb(0, 120, 40, 120);
+	else
+		vec->color = default_color;
 	while (vec->z_color_pair[i] != '\0')
 	{
 		if (vec->z_color_pair[i] == ',')
@@ -109,7 +113,7 @@ void	set_z_and_color(t_vector	*vec, int	default_color)
 		}
 		i++;
 	}
-	vec->color = default_color;
+	
 }
 
 

@@ -108,7 +108,7 @@ typedef	struct s_env
 	t_data		img;
 	t_matrix	map;
 	t_matrix	init_isom_map;
-	t_matrix	init_par_map;
+	t_matrix	init_map;
 
 }			t_env;
 
@@ -144,6 +144,7 @@ void	isometric_projection(t_matrix *map);
 void	scale_z_matrix(t_env *env, float scalar);
 void	rotate_matrix_z(t_matrix *matrix, double angle);
 void	rotate_matrix_x(t_matrix *matrix, double angle);
+void	copy_matrix(t_matrix *src, t_matrix *dest);
 
 //Colors
 int	create_trgb(unsigned char t, unsigned char r, unsigned char g, unsigned char b);

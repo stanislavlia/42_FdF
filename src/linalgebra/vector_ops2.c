@@ -24,7 +24,7 @@ void	isometric_proj_vec(t_vector *vec)
 	// vec->x = (sqrt(3) / 2) * vec->x - (sqrt(3) / 2) * vec->y;
 	// vec->y = (vec->x / 2) + vec->y / 2 - vec->z;
 	//my modified formula:
-	vec->x_fl = (sqrt(3) / 2) * vec->x_fl  - (sqrt(3) / 2) * vec->y_fl;
+	vec->x_fl = (1 / sqrt(2)) * vec->x_fl  - (1 / sqrt(2)) * vec->y_fl;
 	vec->y_fl = (vec->x_fl / 2) + vec->y_fl / 2 -  vec->z_fl;
 
 	vec->x = (int) round(vec->x_fl);

@@ -15,14 +15,13 @@
 // TODO
 
 // Create rotation around 3 axes
-// Adress issues with segfault (probably issue with matrix filling)
+
 
 // Add colors and gradients
 // Add parallel projections
 // Bind keys
 // Norminette
 
-// write function that copies the matrix
 
 
 
@@ -45,8 +44,9 @@ int	main(int argc, char **argv)
 	env.map = read_matrix(fd, get_m_rows(path), get_n_columns(path));
 	env.init_isom_map = read_matrix(open(path, O_RDONLY), get_m_rows(path), get_n_columns(path));
 
-	scale_z_matrix(&env, 3);
+	scale_z_matrix(&env, 8);
 	isometric_projection(&env.map);
+	isometric_projection(&env.init_isom_map);
 	hook_all_funcs(&env);
 	display_static_matrix(&env);
 	mlx_put_image_to_window(env.mlx, env.mlx_window, env.img.img, 0, 0);
