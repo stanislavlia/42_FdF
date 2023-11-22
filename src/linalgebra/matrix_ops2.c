@@ -12,8 +12,8 @@ void	rotate_matrix_z(t_matrix *matrix, double angle)
 		j = 0;
 		while (j < matrix->n)
 		{
-			matrix->rows[i].values[j].x_fl = matrix->rows[i].values[j].x_fl * cos(angle) - matrix->rows[i].values[j].y_fl * sin(angle);
-			matrix->rows[i].values[j].y_fl = matrix->rows[i].values[j].x_fl * sin(angle) + matrix->rows[i].values[j].y_fl * cos(angle);
+			matrix->rows[i].values[j].x_fl = matrix->rows[i].values[j].x_fl * cos(angle) - matrix->rows[i].values[j].y_fl * sin(angle); //just added this part
+			matrix->rows[i].values[j].y_fl = matrix->rows[i].values[j].x_fl * sin(angle) + matrix->rows[i].values[j].y_fl * cos(angle)  +  0.1 *  matrix->rows[i].values[j].z_fl;
 			matrix->rows[i].values[j].x = (int) floor(matrix->rows[i].values[j].x_fl) + 1;
 			matrix->rows[i].values[j].y = (int) floor(matrix->rows[i].values[j].y_fl) + 1;
 			j++;

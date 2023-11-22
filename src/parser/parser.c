@@ -79,7 +79,7 @@ t_matrix	read_matrix(int fd, int m, int n) //TODO: Create a function that will f
 	matrix.m = m;
 	matrix.n = n;
 	matrix.x_margin = (WIDTH / n) / 1.8;
-	matrix.y_margin = (HEIGHT / m) / 1.8;
+	matrix.y_margin = (HEIGHT / m) / 1.5;
 	y_coord = 0;
 	matrix.rows = (t_row *) malloc(sizeof(t_row) * m);
 	while (y_coord < m)

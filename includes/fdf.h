@@ -161,9 +161,9 @@ t_matrix	read_matrix(int fd, int m, int n);
 
 //Keybord events
 void	hook_all_funcs(t_env	*env);
-int	close_window(int keycode, t_env	*env);
 int	reset_to_isom(int keycode, t_env *env);
 int	rotate_pic_z(int keycode, t_env *env);
+int	ft_close_window(t_env *env);
 
 //Cleaning functions
 void	ft_free_array(char	***array_of_str);

@@ -60,7 +60,7 @@ void	display_static_matrix(t_env *env)
 			if (i + 1 < env->map.m)
 				draw_line(env->map.rows[i].values[j],
 					env->map.rows[i + 1].values[j], env);
-			printf("I am drawing x = %d  y = %d\n",env->map.rows[i].values[j].x, env->map.rows[i].values[j].y );
+			//printf("I am drawing x = %d  y = %d\n",env->map.rows[i].values[j].x, env->map.rows[i].values[j].y );
 			draw_pixel(env, i, j);
 			j++;
 		}

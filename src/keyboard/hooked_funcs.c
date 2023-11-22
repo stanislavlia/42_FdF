@@ -2,13 +2,16 @@
 
 //This file will contain all the functions
 //that are responsible for different keys to be pressed
-int	close_window(int keycode, t_env	*env)
+int	ft_close_window(t_env *env)
 {
-	if (keycode == ESCAPE)
-		printf("*Clossing the window*\n");
-		mlx_destroy_window(env->mlx, env->mlx_window);
-	return (1);
+
+	mlx_destroy_image(env->mlx, env->img.img);
+	mlx_destroy_window(env->mlx, env->mlx_window);
+	free_matrix(&env->map);
+	free(env->mlx);
+	exit(0);
 }
+
 
 void	set_new_image(t_env *env)
 {
@@ -29,25 +32,25 @@ int	shift_picture(int keycode, t_env *env)
 {
 	if (keycode == ARROW_RIGHT)
 	{
-		shift_matrix_x(env, 40);
+		shift_matrix_x(env, -40);
 		set_new_image(env);
 		mlx_put_image_to_window(env->mlx, env->mlx_window, env->img.img, 0, 0);
 	}
 	if (keycode == ARROW_LEFT)
 	{
-		shift_matrix_x(env, -40);
+		shift_matrix_x(env, 40);
 		set_new_image(env);
 		mlx_put_image_to_window(env->mlx, env->mlx_window, env->img.img, 0, 0);
 	}
 	if (keycode == ARROW_UP)
 	{
-		shift_matrix_y(env, -40);
+		shift_matrix_y(env, 40);
 		set_new_image(env);
 		mlx_put_image_to_window(env->mlx, env->mlx_window, env->img.img, 0, 0);
 	}
 	if (keycode == ARROW_DOWN)
 	{
-		shift_matrix_y(env, 40);
+		shift_matrix_y(env, -40);
 		set_new_image(env);
 		mlx_put_image_to_window(env->mlx, env->mlx_window, env->img.img, 0, 0);
 	}
@@ -80,7 +83,7 @@ int	scale_picture(int keycode, t_env *env)
 int	key_hook(int keycode, t_env *env, t_env *init_env)
 {
 	if (keycode == ESCAPE)
-		close_window(keycode, env);
+		ft_close_window(env);
 	if (keycode == PLUS || keycode == MINUS)
 		scale_picture(keycode, env);
 	else
@@ -92,4 +95,5 @@ void	hook_all_funcs(t_env	*env)
 	mlx_key_hook(env->mlx_window, key_hook, env);
 	mlx_hook(env->mlx_window, MOUSE_CLICK_LEFT, 0, rotate_pic_z, env);
 	mlx_hook(env->mlx_window, MOUSE_CLICK_RIGHT, 0, rotate_pic_z, env);
+	mlx_hook(env->mlx_window, 17, 0, ft_close_window, env);
 }
