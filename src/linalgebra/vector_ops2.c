@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hooked_funcs.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sliashko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/23 14:45:25 by sliashko          #+#    #+#             */
+/*   Updated: 2023/11/23 14:45:27 by sliashko         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 void	scale_x_vec(t_vector	*vec, float scalar)
@@ -20,13 +32,8 @@ void	scale_z_vec(t_vector	*vec, float scalar)
 
 void	isometric_proj_vec(t_vector *vec)
 {
-	// correct formula:
-	// vec->x = (sqrt(3) / 2) * vec->x - (sqrt(3) / 2) * vec->y;
-	// vec->y = (vec->x / 2) + vec->y / 2 - vec->z;
-	//my modified formula:
-	vec->x_fl = (1 / sqrt(2)) * vec->x_fl  - (1 / sqrt(2)) * vec->y_fl;
-	vec->y_fl = (vec->x_fl / 2) + vec->y_fl / 2 -  vec->z_fl;
-
+	vec->x_fl = (1 / sqrt(2)) * vec->x_fl - (1 / sqrt(2)) * vec->y_fl;
+	vec->y_fl = (vec->x_fl / 2) + vec->y_fl / 2 - vec->z_fl;
 	vec->x = (int) round(vec->x_fl);
 	vec->y = (int) round(vec->y_fl);
 	vec->z = (int) round(vec->z_fl);

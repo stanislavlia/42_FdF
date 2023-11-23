@@ -1,13 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hooked_funcs.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sliashko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/23 14:45:25 by sliashko          #+#    #+#             */
+/*   Updated: 2023/11/23 14:45:27 by sliashko         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 void	shift_matrix_x(t_env *env, int shift_step)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
 	while (i < env->map.m)
-	{	
+	{
 		j = 0;
 		while (j < env->map.n)
 		{
@@ -22,10 +34,10 @@ void	shift_matrix_y(t_env *env, int shift_step)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
 	while (i < env->map.m)
-	{	
+	{
 		j = 0;
 		while (j < env->map.n)
 		{
@@ -40,10 +52,10 @@ void	scale_matrix(t_env *env, float scalar)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
 	while (i < env->map.m)
-	{	
+	{
 		j = 0;
 		while (j < env->map.n)
 		{
@@ -60,10 +72,10 @@ void	isometric_projection(t_matrix *map)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
 	while (i < map->m)
-	{	
+	{
 		j = 0;
 		while (j < map->n)
 		{
@@ -74,16 +86,15 @@ void	isometric_projection(t_matrix *map)
 	}
 }
 
-
 // Instead of env I should pass the map!
 void	scale_z_matrix(t_env *env, float scalar)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
 	while (i < env->map.m)
-	{	
+	{
 		j = 0;
 		while (j < env->map.n)
 		{

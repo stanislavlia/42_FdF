@@ -1,6 +1,18 @@
-#include	"fdf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hooked_funcs.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sliashko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/23 14:45:25 by sliashko          #+#    #+#             */
+/*   Updated: 2023/11/23 14:45:27 by sliashko         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int		len_of_array(char	**array)
+#include "fdf.h"
+
+int	len_of_array(char	**array)
 {
 	int	i;
 
@@ -16,9 +28,9 @@ int	get_m_rows(char *path_to_map)
 {
 	int	fd;
 	int	m_rows;
-	
+
 	fd = open(path_to_map, O_RDONLY);
-	if	(fd == -1)
+	if (fd == -1)
 		return (0);
 	m_rows = 0;
 	while (get_next_line(fd) != NULL)
@@ -31,14 +43,13 @@ int	get_m_rows(char *path_to_map)
 
 int	get_n_columns(char *path_to_map)
 {
-	int	fd;
-	int	n_cols;
+	int		fd;
+	int		n_cols;
 	char	*line;
 	char	**array;
 
-	
 	fd = open(path_to_map, O_RDONLY);
-	if	(fd == -1)
+	if (fd == -1)
 		return (0);
 	line = get_next_line(fd);
 	array = ft_split(line, ' ');
@@ -46,30 +57,25 @@ int	get_n_columns(char *path_to_map)
 	return (n_cols);
 }
 
-
-
-int		is_map_valid(char	*path_to_map)
+int	is_map_valid(char *path_to_map)
 {
-	int	fd;
-	int	els_in_row;
+	int		fd;
+	int		els_in_row;
 	char	*line;
 	char	**array;
 
 	fd = open(path_to_map, O_RDONLY);
-	if	(fd == -1)
+	if (fd == -1)
 		return (0);
 	els_in_row = -11;
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
 		array = ft_split(line, ' ');
-		//printf("The last element in array is %s\n", array[10]);
-		printf("Num elements in a row = %d\n", len_of_array(array));
-		if	(len_of_array(array) == els_in_row || els_in_row == -11)
+		if (len_of_array(array) == els_in_row || els_in_row == -11)
 			els_in_row = len_of_array(array);
 		else
 		{
-			printf("Map validation failed\n");
 			ft_free_array(&array);
 			return (0);
 		}
@@ -79,11 +85,3 @@ int		is_map_valid(char	*path_to_map)
 	}
 	return (1);
 }
-
-
-// int	main()
-// {
-// 	char	*path = "/Users/sliashko/Desktop/FdF/test_maps/42.fdf";
-
-// 	printf("m = %d; n = %d\n", get_m_rows(path), get_n_columns(path));
-// }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hooked_funcs.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sliashko <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/23 14:45:25 by sliashko          #+#    #+#             */
+/*   Updated: 2023/11/23 14:45:27 by sliashko         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 static int	to_skip(char c)
@@ -17,9 +29,6 @@ static int	to_skip(char c)
 	return (0);
 }
 
-
-//NOTE: Probably, we will need to replace it with
-// atoi_base to be able read HEX
 int	ft_atoi(const char *str)
 {
 	int	i;
@@ -44,15 +53,3 @@ int	ft_atoi(const char *str)
 	}
 	return (res * neg);
 }
-
-
-// int	main()
-// {	
-// 	char *str = "-1 0 -1323 -3232 ";
-
-// 	printf("res = %d\n", ft_atoi(str));
-// 	printf("res = %d\n", ft_atoi(str + 2));
-// 	printf("res = %d\n", ft_atoi(str + 4));
-// 	printf("res = %d\n", ft_atoi(str + 10));
-
-// }

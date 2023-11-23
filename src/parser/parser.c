@@ -12,8 +12,6 @@
 
 #include "fdf.h"
 
-
-//Counts number of numbers in row 
 int	count_els_row(char *row)
 {
 	int	n_els;
@@ -43,15 +41,13 @@ void	free_2d_array(char **array)
 
 t_row	extract_row(char *row, int y, int row_size, t_matrix matrix)
 {
-	char	**array_row;
-	int		x_coord;
-	t_vector *row_extracted;
-	t_row	row_ret;
-	
+	char		**array_row;
+	int			x_coord;
+	t_vector	*row_extracted;
+	t_row		row_ret;
+
 	row_extracted = (t_vector *) malloc(sizeof(t_vector) * row_size);
 	array_row = ft_split(row, ' ');
-	// if (array_row == NULL || row == NULL)
-	// 	Make up some way to report about mistake
 	x_coord = 0;
 	while (x_coord < row_size)
 	{
@@ -70,10 +66,10 @@ t_row	extract_row(char *row, int y, int row_size, t_matrix matrix)
 	return (row_ret);
 }
 
-t_matrix	read_matrix(int fd, int m, int n) //TODO: Create a function that will free the matrix
+t_matrix	read_matrix(int fd, int m, int n)
 {
-	char	*curr_line;
-	int		y_coord;
+	char		*curr_line;
+	int			y_coord;
 	t_matrix	matrix;
 
 	matrix.m = m;
@@ -83,18 +79,18 @@ t_matrix	read_matrix(int fd, int m, int n) //TODO: Create a function that will f
 	y_coord = 0;
 	matrix.rows = (t_row *) malloc(sizeof(t_row) * m);
 	while (y_coord < m)
-	{	
+	{
 		curr_line = get_next_line(fd);
 		matrix.rows[y_coord] = extract_row(curr_line, y_coord, n, matrix);
 		free(curr_line);
 		y_coord++;
 	}
-	return matrix;
+	return (matrix);
 }
 
 //it separates (z_val, color) pair if there is color in this vector
 // otherwise just write value to vec.z 
-void	set_z_and_color(t_vector	*vec, int	default_color)
+void	set_z_and_color(t_vector *vec, int default_color)
 {
 	int	i;
 
@@ -108,12 +104,10 @@ void	set_z_and_color(t_vector	*vec, int	default_color)
 	{
 		if (vec->z_color_pair[i] == ',')
 		{
-			vec->color = ft_atoi_base((vec->z_color_pair) + i + 3, "0123456789ABCDEF");
+			vec->color = ft_atoi_base((vec->z_color_pair) + i + 3,
+					"0123456789ABCDEF");
 			return ;
 		}
 		i++;
 	}
-	
 }
-
-
