@@ -16,13 +16,14 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
-	if (abs(x)  < WIDTH / 2 && abs(y) < HEIGHT / 2)
+	if (abs(x) < WIDTH / 2 && abs(y) < HEIGHT / 2)
 	{
-		dst = data->addr + ((y + HEIGHT / 2) * data->line_length + (x + WIDTH / 2) * (data->bits_per_pixel / 8));
+		dst = data->addr + ((y + HEIGHT / 2)
+				* data->line_length + (x + WIDTH / 2)
+				* (data->bits_per_pixel / 8));
 		*(unsigned int *) dst = color;
 	}
 }
-
 
 void	draw_pixel(t_env *env, int i, int j)
 {
@@ -51,7 +52,6 @@ void	display_static_matrix(t_env *env)
 			if (i + 1 < env->map.m)
 				draw_line(env->map.rows[i].values[j],
 					env->map.rows[i + 1].values[j], env);
-			//printf("I am drawing x = %d  y = %d\n",env->map.rows[i].values[j].x, env->map.rows[i].values[j].y );
 			draw_pixel(env, i, j);
 			j++;
 		}

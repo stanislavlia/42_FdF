@@ -145,6 +145,8 @@ void	scale_z_matrix(t_env *env, float scalar);
 void	rotate_matrix_z(t_matrix *matrix, double angle);
 void	rotate_matrix_x(t_matrix *matrix, double angle);
 void	copy_matrix(t_matrix *src, t_matrix *dest);
+int		shift_picture(int keycode, t_env *env);
+int		scale_picture(int keycode, t_env *env);
 
 //Colors
 int	create_trgb(unsigned char t, unsigned char r, unsigned char g, unsigned char b);
