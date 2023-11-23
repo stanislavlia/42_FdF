@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		printf("Please, provide the path to the map as argument!\n");
+		write(1, "Please, provide the path to the map as argument!\n", 51);
 		return (0);
 	}
 	path = argv[1];
