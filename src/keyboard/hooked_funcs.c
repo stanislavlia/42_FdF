@@ -8,6 +8,7 @@ int	ft_close_window(t_env *env)
 	mlx_destroy_image(env->mlx, env->img.img);
 	mlx_destroy_window(env->mlx, env->mlx_window);
 	free_matrix(&env->map);
+	free_matrix(&env->init_isom_map);
 	free(env->mlx);
 	exit(0);
 }

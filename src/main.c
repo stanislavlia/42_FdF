@@ -12,19 +12,6 @@
 
 #include "fdf.h"
 
-// TODO
-
-// Create rotation around 3 axes
-
-
-// Add colors and gradients
-// Add parallel projections
-// Bind keys
-// Norminette
-
-
-
-
 int	main(int argc, char **argv)
 {	
 	char	*path;

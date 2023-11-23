@@ -72,5 +72,8 @@ re: clean mlx all
 
 check_leaks:
 			leaks --atExit -- ./$(NAME)
+norm:
+			norminette src
+			norminette main.c
 
-.PHONY: all clean fclean re mlx check_leaks
+.PHONY: all clean fclean re mlx check_leaks norm
