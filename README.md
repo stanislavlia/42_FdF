@@ -13,3 +13,9 @@ Initial steps:
 ```bash
   ./fdf  [path to the map]
 ```
+
+Examples:
+
+![42 Map](/pic_examples/example1.png)
+
+![Pylone Map](/pic_examples/example12png)
