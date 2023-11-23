@@ -18,4 +18,6 @@ Examples:
 
 ![42 Map](/pic_examples/example1.png)
 
-![Pylone Map](/pic_examples/example12png)
+![Pylone Map](/pic_examples/example2.png)
+
+![Mars Map](/pic_examples/example3.png)
