@@ -16,11 +16,11 @@
 #  define BUFFER_SIZE 10
 # endif
 
-#define DEFAULT_COLOR 0xFFFFFF
-#define WIDTH 1920
-#define HEIGHT 1080
-#define W_MARGIN 1
-#define H_MARGIN 1
+# define DEFAULT_COLOR 0xFFFFFF
+# define WIDTH 1920
+# define HEIGHT 1080
+# define W_MARGIN 1
+# define H_MARGIN 1
 
 //X11 events
 # define ARROW_LEFT 123
@@ -70,24 +70,21 @@ typedef struct s_row
 	int			y;
 	t_vector	*values;
 
-
 }	t_row;
-
-
 
 typedef struct s_matrix
 {
 	t_row	*rows;
 	int		m;
-	int		n; //shape of the matrix
+	int		n;
 	int		x_margin;
 	int		y_margin;
 
 }				t_matrix;
 
-
 //STRUCT FOR MLX
-typedef struct	s_data {
+typedef struct s_data
+{
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -95,13 +92,13 @@ typedef struct	s_data {
 	int		endian;
 }				t_data;
 
-typedef struct	s_vars {
+typedef struct s_vars
+{
 	void	*mlx;
 	void	*win;
 }				t_vars;
 
-
-typedef	struct s_env
+typedef struct s_env
 {
 	void		*mlx;
 	void		*mlx_window;
@@ -112,76 +109,75 @@ typedef	struct s_env
 
 }			t_env;
 
-
-
 //Utils
-int		ft_atoi(const char *str);
-char	**ft_split(char const *s, char c);
-int		ft_atoi_base(char *str, char *base);
-void	setup_environment(t_env *env_ptr);
+int				ft_atoi(const char *str);
+char			**ft_split(char const *s, char c);
+int				ft_atoi_base(char *str, char *base);
+void			setup_environment(t_env *env_ptr);
 
 //MLX drawing
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void	fill_topleft_square(void	*img, int	square_size, int	color);
-void	display_static_matrix(t_env *env);
-void	draw_line(t_vector p1, t_vector p2, t_env *env);
-void	set_new_image(t_env *env);
+void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void			fill_topleft_square(void *img, int square_size, int color);
+void			display_static_matrix(t_env *env);
+void			draw_line(t_vector p1, t_vector p2, t_env *env);
+void			set_new_image(t_env *env);
 
 //Linear Algebra functions
-void	addto_x_vec(t_vector	*vec, int val);
-void	addto_y_vec(t_vector	*vec, int val);
-void	addto_z_vec(t_vector	*vec, int val);
-void	shift_matrix_x(t_env *env, int shift_step);
-void	shift_matrix_y(t_env *env, int shift_step);
-void	scale_x_vec(t_vector	*vec, float scalar);
-void	scale_y_vec(t_vector	*vec, float scalar);
-void	scale_z_vec(t_vector	*vec, float scalar);
-void	scale_matrix(t_env *env, float scalar);
-void	isometric_proj_vec(t_vector *vec);
-void	isometric_projection(t_matrix *map);
-void	scale_z_matrix(t_env *env, float scalar);
-void	rotate_matrix_z(t_matrix *matrix, double angle);
-void	rotate_matrix_x(t_matrix *matrix, double angle);
-void	copy_matrix(t_matrix *src, t_matrix *dest);
-int		shift_picture(int keycode, t_env *env);
-int		scale_picture(int keycode, t_env *env);
+void			addto_x_vec(t_vector	*vec, int val);
+void			addto_y_vec(t_vector	*vec, int val);
+void			addto_z_vec(t_vector	*vec, int val);
+void			shift_matrix_x(t_env *env, int shift_step);
+void			shift_matrix_y(t_env *env, int shift_step);
+void			scale_x_vec(t_vector	*vec, float scalar);
+void			scale_y_vec(t_vector	*vec, float scalar);
+void			scale_z_vec(t_vector	*vec, float scalar);
+void			scale_matrix(t_env *env, float scalar);
+void			isometric_proj_vec(t_vector *vec);
+void			isometric_projection(t_matrix *map);
+void			scale_z_matrix(t_env *env, float scalar);
+void			rotate_matrix_z(t_matrix *matrix, double angle);
+void			rotate_matrix_x(t_matrix *matrix, double angle);
+void			copy_matrix(t_matrix *src, t_matrix *dest);
+int				shift_picture(int keycode, t_env *env);
+int				scale_picture(int keycode, t_env *env);
 
 //Colors
-int	create_trgb(unsigned char t, unsigned char r, unsigned char g, unsigned char b);
+int				create_trgb(unsigned char t, unsigned char r,
+					unsigned char g, unsigned char b);
 unsigned char	get_t(int trgb);
 unsigned char	get_r(int trgb);
 unsigned char	get_g(int trgb);
 unsigned char	get_b(int trgb);
-int	interpolate_color(int color1, int color2, double gradient);
-double	calculate_gradient(int x, int y, t_vector p1, t_vector p2);
+int				interpolate_color(int color1, int color2, double gradient);
+double			calculate_gradient(int x, int y, t_vector p1, t_vector p2);
 
 //Validation and parsing
-void		set_z_and_color(t_vector	*vec, int	default_color);
-int			is_map_valid(char	*path_to_map);
-int			get_m_rows(char *path_to_map);
-int			get_n_columns(char *path_to_map);
-t_matrix	read_matrix(int fd, int m, int n);
+void			set_z_and_color(t_vector *vec, int default_color);
+int				is_map_valid(char *path_to_map);
+int				get_m_rows(char *path_to_map);
+int				get_n_columns(char *path_to_map);
+t_matrix		read_matrix(int fd, int m, int n);
 
 //Keybord events
-void	hook_all_funcs(t_env	*env);
-int	reset_to_isom(int keycode, t_env *env);
-int	rotate_pic_z(int keycode, t_env *env);
-int	ft_close_window(t_env *env);
+void			hook_all_funcs(t_env	*env);
+int				reset_to_isom(int keycode, t_env *env);
+int				rotate_pic_z(int keycode, t_env *env);
+int				ft_close_window(t_env *env);
 
 //Cleaning functions
-void	ft_free_array(char	***array_of_str);
-void	free_matrix(t_matrix	*matrix_ptr);
+void			ft_free_array(char	***array_of_str);
+void			free_matrix(t_matrix	*matrix_ptr);
 
 //GNL
-t_list		*get_last_node(t_list *lst);
-int			search_for_newline(t_list *list);
-void		append_node(t_list **list, char *buffer_batch);
-int			create_list(t_list **list, int fd);
-size_t		len_till_nl(t_list	*start_node);
-char		*get_next_line(int fd);
-void		keep_rest(t_list **list);
-void		free_list(t_list **list, t_list *clean_node, char *buffer);
-char		*retrive_line(t_list	*list);
-int			fill_line_from_content(char *line, int *i, char *content);
+t_list			*get_last_node(t_list *lst);
+int				search_for_newline(t_list *list);
+void			append_node(t_list **list, char *buffer_batch);
+int				create_list(t_list **list, int fd);
+size_t			len_till_nl(t_list	*start_node);
+char			*get_next_line(int fd);
+void			keep_rest(t_list **list);
+void			free_list(t_list **list, t_list *clean_node, char *buffer);
+char			*retrive_line(t_list	*list);
+int				fill_line_from_content(char *line, int *i, char *content);
 
 #endif

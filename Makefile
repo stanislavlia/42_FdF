@@ -1,21 +1,9 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: dlariono <dlariono@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/03/09 18:31:20 by seozkan           #+#    #+#              #
-#    Updated: 2023/06/24 18:15:52 by dlariono         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME = fdf
 NAME_B = fdfb
 CC = @gcc
 RM = @rm -f
-#FLAGS = -Wall -Wextra -Werror 
-FLAGS = 	#turn off flags for DEV
+FLAGS = -Wall -Wextra -Werror 
+#FLAGS = 	#turn off flags for DEV
 
 YELLOW = \033[33;49;1m
 CYAN = \033[33;36;1m
@@ -35,7 +23,7 @@ B_OBJ = ${B_SRC:.c=.o}
 all: $(NAME)
 
 $(NAME):	$(OBJ)  $(MLX)
-			$(CC) $(FLAGS) $(OBJ) $(MLX) $(MLX_ARG) -o $(NAME)
+			$(CC) $(OBJ) $(MLX) $(MLX_ARG) -o $(NAME)
 			@echo "$(YELLOW)${NAME} ✔️"
 			@echo "$(CYAN)Mandatory files compiled successfully ✔️$(END)"
 
@@ -50,9 +38,6 @@ $(MLX):
 $(NAME_B): 	$(B_OBJ)  $(MLX)
 			$(CC) $(FLAGS) $(B_OBJ) $(MLX) $(MLX_ARG) -o $(NAME_B)
 			@echo "$(YELLOW)${NAME_B} ✔️$(END)"
-
-n:
-	norminette src  inc
 
 clean:
 	${RM} ${OBJ}
@@ -74,6 +59,6 @@ check_leaks:
 			leaks --atExit -- ./$(NAME)
 norm:
 			norminette src
-			norminette main.c
+			norminette includes/fdf.h
 
 .PHONY: all clean fclean re mlx check_leaks norm

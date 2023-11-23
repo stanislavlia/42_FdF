@@ -40,7 +40,7 @@ int	rotate_pic_z(int keycode, t_env *env)
 	return (1);
 }
 
-int	key_hook(int keycode, t_env *env, t_env *init_env)
+int	key_hook(int keycode, t_env *env)
 {
 	if (keycode == ESCAPE)
 		ft_close_window(env);
