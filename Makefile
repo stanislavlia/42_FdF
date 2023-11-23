@@ -27,7 +27,7 @@ $(NAME):	$(OBJ)  $(MLX)
 			@echo "$(YELLOW)${NAME} ✔️"
 			@echo "$(CYAN)Mandatory files compiled successfully ✔️$(END)"
 
-%.o: %.c
+%.o: %.c includes/*.h
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
 
 
