@@ -58,3 +58,29 @@ void	display_static_matrix(t_env *env)
 		i++;
 	}
 }
+
+int	interpolate_color(int color1, int color2, double gradient)
+{
+	int	r;
+	int	g;
+	int	b;
+
+	r = (int)(((color1 >> 16) & 0xFF) + (((color2 >> 16) & 0xFF)
+				- ((color1 >> 16) & 0xFF)) * gradient);
+	g = (int)(((color1 >> 8) & 0xFF) + (((color2 >> 8) & 0xFF)
+				- ((color1 >> 8) & 0xFF)) * gradient);
+	b = (int)((color1 & 0xFF) + ((color2 & 0xFF) - (color1 & 0xFF)) * gradient);
+	return ((r << 16) | (g << 8) | b);
+}
+
+double	calculate_gradient(int x, int y, t_vector p1, t_vector p2)
+{
+	int	dx;
+	int	dy;
+	int	distance;
+
+	dx = p2.x - p1.x;
+	dy = p2.y - p1.y;
+	distance = sqrt(dx * dx + dy * dy);
+	return (sqrt((x - p1.x) * (x - p1.x) + (y - p1.y) * (y - p1.y)) / distance);
+}

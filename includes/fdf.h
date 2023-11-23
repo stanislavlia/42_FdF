@@ -152,6 +152,8 @@ unsigned char	get_t(int trgb);
 unsigned char	get_r(int trgb);
 unsigned char	get_g(int trgb);
 unsigned char	get_b(int trgb);
+int	interpolate_color(int color1, int color2, double gradient);
+double	calculate_gradient(int x, int y, t_vector p1, t_vector p2);
 
 //Validation and parsing
 void		set_z_and_color(t_vector	*vec, int	default_color);
