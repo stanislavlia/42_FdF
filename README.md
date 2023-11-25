@@ -58,3 +58,11 @@ Map - mars.fdf
   ./fdf  test_maps/mars.fdf
 ```
 ![Mars Map](/pic_examples/example3.png)
+
+#### Additional steps to improve project
+ - Fix rotation (now the model gradually decreases as it rotates)
+ - Make colors more diverse and beautiful
+ - Computation optimization
+
+
+Feel free to provide any other suggestions on how to improve the project
