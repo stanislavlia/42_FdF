@@ -63,6 +63,7 @@ Map - mars.fdf
  - Fix rotation (now the model gradually decreases as it rotates)
  - Make colors more diverse and beautiful
  - Computation optimization
+ - Make the project cross-platform (Now it works only on MacOS)
 
 
 Feel free to provide any other suggestions on how to improve the project
