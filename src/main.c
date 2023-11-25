@@ -20,11 +20,16 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		write(1, "Please, provide the path to the map as argument!\n", 51);
+		write(1, "Please, provide only the path to the map as argument!\n", 50);
 		return (0);
 	}
 	path = argv[1];
 	fd = open(path, O_RDONLY);
+	if (fd == -1)
+	{
+		write(1, "The file is invalid\n", 21);
+		return (-1);
+	}
 	setup_environment(&env);
 	env.map = read_matrix(fd, get_m_rows(path), get_n_columns(path));
 	env.init_isom_map = read_matrix(open(path, O_RDONLY),
